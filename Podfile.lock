@@ -1,0 +1,36 @@
+PODS:
+  - CryptoSwift (0.14.0)
+  - PromiseKit (6.8.3):
+    - PromiseKit/CorePromise (= 6.8.3)
+    - PromiseKit/Foundation (= 6.8.3)
+    - PromiseKit/UIKit (= 6.8.3)
+  - PromiseKit/CorePromise (6.8.3)
+  - PromiseKit/Foundation (6.8.3):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (6.8.3):
+    - PromiseKit/CorePromise
+  - Starscream (3.0.6)
+  - SwiftLint (0.31.0)
+
+DEPENDENCIES:
+  - CryptoSwift
+  - PromiseKit
+  - Starscream
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CryptoSwift
+    - PromiseKit
+    - Starscream
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
+  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  SwiftLint: 7a0227733d786395817373b2d0ca799fd0093ff3
+
+PODFILE CHECKSUM: 8a5c80d43ea8067b49d279cd9a4166b183f1f3b4
+
+COCOAPODS: 1.6.1

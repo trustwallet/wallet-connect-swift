@@ -1,0 +1,895 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B11EC73DF79AFA9A1985E08 /* Pods_WallectConnect.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B79AE47913BFBC0D454EEEF /* Pods_WallectConnect.framework */; };
+		1AE8AD10D1D8D44572F0C532 /* Pods_WallectConnectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6A0BCC10671C48EBC28376 /* Pods_WallectConnectTests.framework */; };
+		80A3AADD87BF5DCA0162FE5F /* Pods_WalletConnectApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05E554F13CFC8CE7496232FE /* Pods_WalletConnectApp.framework */; };
+		BB832CF9224E483B0029EB61 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832CF8224E483B0029EB61 /* AppDelegate.swift */; };
+		BB832CFB224E483B0029EB61 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832CFA224E483B0029EB61 /* ViewController.swift */; };
+		BB832CFE224E483B0029EB61 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB832CFC224E483B0029EB61 /* Main.storyboard */; };
+		BB832D00224E483D0029EB61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB832CFF224E483D0029EB61 /* Assets.xcassets */; };
+		BB832D03224E483D0029EB61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB832D01224E483D0029EB61 /* LaunchScreen.storyboard */; };
+		BB832D13224E56290029EB61 /* WallectConnect.h in Headers */ = {isa = PBXBuildFile; fileRef = BB832D11224E56290029EB61 /* WallectConnect.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BB832D1D224E56340029EB61 /* WCSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D1C224E56340029EB61 /* WCSession.swift */; };
+		BB832D1F224E56820029EB61 /* WCInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D1E224E56820029EB61 /* WCInteractor.swift */; };
+		BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D20224E6ACE0029EB61 /* JSONRPC.swift */; };
+		BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */; };
+		BB832D2B224E6CD00029EB61 /* WCSessionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */; };
+		BB9B4D0B224F1E3200B9A043 /* WCEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D0A224F1E3200B9A043 /* WCEncryptor.swift */; };
+		BB9B4D0D224F1E8C00B9A043 /* WCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D0C224F1E8C00B9A043 /* WCError.swift */; };
+		BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D11224F218200B9A043 /* Data+Hex.swift */; };
+		BB9B4D14224F2BA500B9A043 /* WCApproveSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */; };
+		BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D212251A92D00B9A043 /* WCEvent.swift */; };
+		BB9B4D242251AD1700B9A043 /* WCClientMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */; };
+		BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */; };
+		BB9B4D9F2252108600B9A043 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */; };
+		BB9B4DA82252124700B9A043 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DA72252124700B9A043 /* WCSessionTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB832D14224E56290029EB61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB832CED224E483B0029EB61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB832D0E224E56290029EB61;
+			remoteInfo = WallectConnect;
+		};
+		BB9B4D9422520F5900B9A043 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BB832CED224E483B0029EB61 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB832D0E224E56290029EB61;
+			remoteInfo = WallectConnect;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		BB832D1B224E56290029EB61 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0456EB660E9EFCFC9C5C19C4 /* Pods-WallectConnect.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnect.debug.xcconfig"; path = "Target Support Files/Pods-WallectConnect/Pods-WallectConnect.debug.xcconfig"; sourceTree = "<group>"; };
+		05E554F13CFC8CE7496232FE /* Pods_WalletConnectApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletConnectApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0781893AD1D0598784A029E9 /* Pods-WallectConnectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnectTests.release.xcconfig"; path = "Target Support Files/Pods-WallectConnectTests/Pods-WallectConnectTests.release.xcconfig"; sourceTree = "<group>"; };
+		0C6A0BCC10671C48EBC28376 /* Pods_WallectConnectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallectConnectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B79AE47913BFBC0D454EEEF /* Pods_WallectConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WallectConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D17FFB9BE2F29E3B5B4A848 /* Pods-WallectConnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnect.release.xcconfig"; path = "Target Support Files/Pods-WallectConnect/Pods-WallectConnect.release.xcconfig"; sourceTree = "<group>"; };
+		77A3B5E6DDB5B1D8695AB6FA /* Pods-WallectConnectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnectTests.debug.xcconfig"; path = "Target Support Files/Pods-WallectConnectTests/Pods-WallectConnectTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AF111D836AB599EC74D9B171 /* Pods-WalletConnectApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnectApp.debug.xcconfig"; path = "Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp.debug.xcconfig"; sourceTree = "<group>"; };
+		BB832CF5224E483B0029EB61 /* WalletConnectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WalletConnectApp.app; path = "/Users/hewig/Desktop/WalletConnectApp/build/Debug-iphoneos/WalletConnectApp.app"; sourceTree = "<absolute>"; };
+		BB832CF8224E483B0029EB61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BB832CFA224E483B0029EB61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BB832CFD224E483B0029EB61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BB832CFF224E483D0029EB61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BB832D02224E483D0029EB61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BB832D04224E483D0029EB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB832D0F224E56290029EB61 /* WallectConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WallectConnect.framework; path = "/Users/hewig/Desktop/WalletConnectApp/build/Debug-iphoneos/WallectConnect.framework"; sourceTree = "<absolute>"; };
+		BB832D11224E56290029EB61 /* WallectConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallectConnect.h; sourceTree = "<group>"; };
+		BB832D12224E56290029EB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB832D1C224E56340029EB61 /* WCSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSession.swift; sourceTree = "<group>"; };
+		BB832D1E224E56820029EB61 /* WCInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCInteractor.swift; sourceTree = "<group>"; };
+		BB832D20224E6ACE0029EB61 /* JSONRPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRPC.swift; sourceTree = "<group>"; };
+		BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSocketMessage.swift; sourceTree = "<group>"; };
+		BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionUpdate.swift; sourceTree = "<group>"; };
+		BB9B4D0A224F1E3200B9A043 /* WCEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEncryptor.swift; sourceTree = "<group>"; };
+		BB9B4D0C224F1E8C00B9A043 /* WCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCError.swift; sourceTree = "<group>"; };
+		BB9B4D11224F218200B9A043 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
+		BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCApproveSessionResponse.swift; sourceTree = "<group>"; };
+		BB9B4D212251A92D00B9A043 /* WCEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEvent.swift; sourceTree = "<group>"; };
+		BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCClientMeta.swift; sourceTree = "<group>"; };
+		BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		BB9B4D9222520F5900B9A043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEncryptorTests.swift; sourceTree = "<group>"; };
+		BB9B4DA02252110B00B9A043 /* CryptoSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CryptoSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DA22252110F00B9A043 /* PromiseKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DA42252111300B9A043 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DA62252117200B9A043 /* WallectConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallectConnectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DA72252124700B9A043 /* WCSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
+		F2A749110C3A3A462BA4AABE /* Pods-WalletConnectApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnectApp.release.xcconfig"; path = "Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BB832CF2224E483B0029EB61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A3AADD87BF5DCA0162FE5F /* Pods_WalletConnectApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB832D0C224E56290029EB61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B11EC73DF79AFA9A1985E08 /* Pods_WallectConnect.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB9B4D8B22520F5900B9A043 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AE8AD10D1D8D44572F0C532 /* Pods_WallectConnectTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E2B2634D67EA7F1B01ABCFD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4DA42252111300B9A043 /* Starscream.framework */,
+				BB9B4DA22252110F00B9A043 /* PromiseKit.framework */,
+				BB9B4DA02252110B00B9A043 /* CryptoSwift.framework */,
+				05E554F13CFC8CE7496232FE /* Pods_WalletConnectApp.framework */,
+				1B79AE47913BFBC0D454EEEF /* Pods_WallectConnect.framework */,
+				0C6A0BCC10671C48EBC28376 /* Pods_WallectConnectTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BB3197134358B26BDC5BDB58 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF111D836AB599EC74D9B171 /* Pods-WalletConnectApp.debug.xcconfig */,
+				F2A749110C3A3A462BA4AABE /* Pods-WalletConnectApp.release.xcconfig */,
+				0456EB660E9EFCFC9C5C19C4 /* Pods-WallectConnect.debug.xcconfig */,
+				4D17FFB9BE2F29E3B5B4A848 /* Pods-WallectConnect.release.xcconfig */,
+				77A3B5E6DDB5B1D8695AB6FA /* Pods-WallectConnectTests.debug.xcconfig */,
+				0781893AD1D0598784A029E9 /* Pods-WallectConnectTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BB832CEC224E483B0029EB61 = {
+			isa = PBXGroup;
+			children = (
+				BB832CF7224E483B0029EB61 /* WalletConnectApp */,
+				BB832D10224E56290029EB61 /* WallectConnect */,
+				BB9B4D8F22520F5900B9A043 /* WallectConnectTests */,
+				BB3197134358B26BDC5BDB58 /* Pods */,
+				3E2B2634D67EA7F1B01ABCFD /* Frameworks */,
+				BB9B4DA62252117200B9A043 /* WallectConnectTests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		BB832CF7224E483B0029EB61 /* WalletConnectApp */ = {
+			isa = PBXGroup;
+			children = (
+				BB832CF8224E483B0029EB61 /* AppDelegate.swift */,
+				BB832CFA224E483B0029EB61 /* ViewController.swift */,
+				BB832CFC224E483B0029EB61 /* Main.storyboard */,
+				BB832CFF224E483D0029EB61 /* Assets.xcassets */,
+				BB832D01224E483D0029EB61 /* LaunchScreen.storyboard */,
+				BB832D04224E483D0029EB61 /* Info.plist */,
+			);
+			path = WalletConnectApp;
+			sourceTree = "<group>";
+		};
+		BB832D10224E56290029EB61 /* WallectConnect */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4D10224F217800B9A043 /* Extensions */,
+				BB832D27224E6C800029EB61 /* JSONRPC */,
+				BB832D22224E6C020029EB61 /* Models */,
+				BB9B4D0A224F1E3200B9A043 /* WCEncryptor.swift */,
+				BB9B4D0C224F1E8C00B9A043 /* WCError.swift */,
+				BB832D1E224E56820029EB61 /* WCInteractor.swift */,
+				BB832D1C224E56340029EB61 /* WCSession.swift */,
+				BB832D11224E56290029EB61 /* WallectConnect.h */,
+				BB832D12224E56290029EB61 /* Info.plist */,
+			);
+			path = WallectConnect;
+			sourceTree = "<group>";
+		};
+		BB832D22224E6C020029EB61 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */,
+				BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */,
+				BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */,
+				BB9B4D212251A92D00B9A043 /* WCEvent.swift */,
+				BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BB832D27224E6C800029EB61 /* JSONRPC */ = {
+			isa = PBXGroup;
+			children = (
+				BB832D20224E6ACE0029EB61 /* JSONRPC.swift */,
+			);
+			path = JSONRPC;
+			sourceTree = "<group>";
+		};
+		BB9B4D10224F217800B9A043 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4D11224F218200B9A043 /* Data+Hex.swift */,
+				BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BB9B4D8F22520F5900B9A043 /* WallectConnectTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */,
+				BB9B4DA72252124700B9A043 /* WCSessionTests.swift */,
+				BB9B4D9222520F5900B9A043 /* Info.plist */,
+			);
+			path = WallectConnectTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BB832D0A224E56290029EB61 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB832D13224E56290029EB61 /* WallectConnect.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BB832CF4224E483B0029EB61 /* WalletConnectApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB832D07224E483D0029EB61 /* Build configuration list for PBXNativeTarget "WalletConnectApp" */;
+			buildPhases = (
+				019343452666B024857792BB /* [CP] Check Pods Manifest.lock */,
+				BB832CF1224E483B0029EB61 /* Sources */,
+				BB832CF2224E483B0029EB61 /* Frameworks */,
+				BB832CF3224E483B0029EB61 /* Resources */,
+				509BEA86E11E2E23945B7D12 /* [CP] Embed Pods Frameworks */,
+				BB832D1B224E56290029EB61 /* Embed Frameworks */,
+				BB9B4D2C2251AEDB00B9A043 /* Swift Lint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB832D15224E56290029EB61 /* PBXTargetDependency */,
+			);
+			name = WalletConnectApp;
+			productName = WalletConnectApp;
+			productReference = BB832CF5224E483B0029EB61 /* WalletConnectApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BB832D0E224E56290029EB61 /* WallectConnect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB832D1A224E56290029EB61 /* Build configuration list for PBXNativeTarget "WallectConnect" */;
+			buildPhases = (
+				B96DB4A6A1DED6631EC86DBF /* [CP] Check Pods Manifest.lock */,
+				BB832D0A224E56290029EB61 /* Headers */,
+				BB832D0B224E56290029EB61 /* Sources */,
+				BB832D0C224E56290029EB61 /* Frameworks */,
+				BB832D0D224E56290029EB61 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WallectConnect;
+			productName = WallectConnect;
+			productReference = BB832D0F224E56290029EB61 /* WallectConnect.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		BB9B4D8D22520F5900B9A043 /* WallectConnectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB9B4D9622520F5900B9A043 /* Build configuration list for PBXNativeTarget "WallectConnectTests" */;
+			buildPhases = (
+				931EEC26ECE2ABE200CD7130 /* [CP] Check Pods Manifest.lock */,
+				BB9B4D8A22520F5900B9A043 /* Sources */,
+				BB9B4D8B22520F5900B9A043 /* Frameworks */,
+				BB9B4D8C22520F5900B9A043 /* Resources */,
+				F349CDACFD1B070A3D9D70AA /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB9B4D9522520F5900B9A043 /* PBXTargetDependency */,
+			);
+			name = WallectConnectTests;
+			productName = WallectConnectTests;
+			productReference = BB9B4DA62252117200B9A043 /* WallectConnectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BB832CED224E483B0029EB61 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Trust;
+				TargetAttributes = {
+					BB832CF4224E483B0029EB61 = {
+						CreatedOnToolsVersion = 10.2;
+					};
+					BB832D0E224E56290029EB61 = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
+					};
+					BB9B4D8D22520F5900B9A043 = {
+						CreatedOnToolsVersion = 10.2;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = BB832CF0224E483B0029EB61 /* Build configuration list for PBXProject "WalletConnectApp" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BB832CEC224E483B0029EB61;
+			productRefGroup = BB832CEC224E483B0029EB61;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BB832CF4224E483B0029EB61 /* WalletConnectApp */,
+				BB832D0E224E56290029EB61 /* WallectConnect */,
+				BB9B4D8D22520F5900B9A043 /* WallectConnectTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB832CF3224E483B0029EB61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB832D03224E483D0029EB61 /* LaunchScreen.storyboard in Resources */,
+				BB832D00224E483D0029EB61 /* Assets.xcassets in Resources */,
+				BB832CFE224E483B0029EB61 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB832D0D224E56290029EB61 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB9B4D8C22520F5900B9A043 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		019343452666B024857792BB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WalletConnectApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		509BEA86E11E2E23945B7D12 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		931EEC26ECE2ABE200CD7130 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WallectConnectTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B96DB4A6A1DED6631EC86DBF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WallectConnect-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BB9B4D2C2251AEDB00B9A043 /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		F349CDACFD1B070A3D9D70AA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WallectConnectTests/Pods-WallectConnectTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WallectConnectTests/Pods-WallectConnectTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BB832CF1224E483B0029EB61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB832CFB224E483B0029EB61 /* ViewController.swift in Sources */,
+				BB832CF9224E483B0029EB61 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB832D0B224E56290029EB61 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */,
+				BB9B4D242251AD1700B9A043 /* WCClientMeta.swift in Sources */,
+				BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */,
+				BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */,
+				BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */,
+				BB832D2B224E6CD00029EB61 /* WCSessionUpdate.swift in Sources */,
+				BB9B4D0D224F1E8C00B9A043 /* WCError.swift in Sources */,
+				BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */,
+				BB9B4D14224F2BA500B9A043 /* WCApproveSessionResponse.swift in Sources */,
+				BB832D1F224E56820029EB61 /* WCInteractor.swift in Sources */,
+				BB9B4D0B224F1E3200B9A043 /* WCEncryptor.swift in Sources */,
+				BB832D1D224E56340029EB61 /* WCSession.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB9B4D8A22520F5900B9A043 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB9B4DA82252124700B9A043 /* WCSessionTests.swift in Sources */,
+				BB9B4D9F2252108600B9A043 /* WCEncryptorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB832D15224E56290029EB61 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB832D0E224E56290029EB61 /* WallectConnect */;
+			targetProxy = BB832D14224E56290029EB61 /* PBXContainerItemProxy */;
+		};
+		BB9B4D9522520F5900B9A043 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB832D0E224E56290029EB61 /* WallectConnect */;
+			targetProxy = BB9B4D9422520F5900B9A043 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BB832CFC224E483B0029EB61 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB832CFD224E483B0029EB61 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BB832D01224E483D0029EB61 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BB832D02224E483D0029EB61 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BB832D05224E483D0029EB61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BB832D06224E483D0029EB61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BB832D08224E483D0029EB61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF111D836AB599EC74D9B171 /* Pods-WalletConnectApp.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				INFOPLIST_FILE = WalletConnectApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WalletConnectApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB832D09224E483D0029EB61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2A749110C3A3A462BA4AABE /* Pods-WalletConnectApp.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				INFOPLIST_FILE = WalletConnectApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WalletConnectApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BB832D18224E56290029EB61 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0456EB660E9EFCFC9C5C19C4 /* Pods-WallectConnect.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WallectConnect/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WallectConnect;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		BB832D19224E56290029EB61 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D17FFB9BE2F29E3B5B4A848 /* Pods-WallectConnect.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = WallectConnect/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WallectConnect;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		BB9B4D9722520F5900B9A043 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77A3B5E6DDB5B1D8695AB6FA /* Pods-WallectConnectTests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WallectConnectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WallectConnectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BB9B4D9822520F5900B9A043 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0781893AD1D0598784A029E9 /* Pods-WallectConnectTests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = WallectConnectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.trustwallet.WallectConnectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BB832CF0224E483B0029EB61 /* Build configuration list for PBXProject "WalletConnectApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB832D05224E483D0029EB61 /* Debug */,
+				BB832D06224E483D0029EB61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB832D07224E483D0029EB61 /* Build configuration list for PBXNativeTarget "WalletConnectApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB832D08224E483D0029EB61 /* Debug */,
+				BB832D09224E483D0029EB61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB832D1A224E56290029EB61 /* Build configuration list for PBXNativeTarget "WallectConnect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB832D18224E56290029EB61 /* Debug */,
+				BB832D19224E56290029EB61 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB9B4D9622520F5900B9A043 /* Build configuration list for PBXNativeTarget "WallectConnectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB9B4D9722520F5900B9A043 /* Debug */,
+				BB9B4D9822520F5900B9A043 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BB832CED224E483B0029EB61 /* Project object */;
+}
