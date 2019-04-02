@@ -5,6 +5,7 @@ ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 target 'WallectConnect' do
   use_frameworks!
 
+  pod 'TrustWalletCore'
   pod 'CryptoSwift'
   pod 'Starscream'
   pod 'PromiseKit'

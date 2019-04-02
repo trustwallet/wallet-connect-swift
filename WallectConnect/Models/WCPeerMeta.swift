@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct WCClientMeta: Codable {
+public struct WCPeerMeta: Codable {
     public let name: String
     public let url: String
     public let description: String

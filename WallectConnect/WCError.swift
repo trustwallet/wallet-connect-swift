@@ -10,5 +10,6 @@ import Foundation
 
 public enum WCError: Error {
     case badServerResponse
+    case badJSONRPCRequest
     case unknown
 }

@@ -31,18 +31,18 @@ public struct WCSocketMessage<T: Codable>: Codable {
 }
 
 public extension WCEncryptionPayload {
-    static func extract(_ string: String) -> WCEncryptionPayload? {
+    static func extract(_ string: String) -> (topic: String, payload: WCEncryptionPayload)? {
         guard let data = string.data(using: .utf8) else {
             return nil
         }
         do {
             let decoder = JSONDecoder()
             if let message = try? decoder.decode(WCSocketMessage<WCEncryptionPayload>.self, from: data) {
-                return message.payload
+                return (message.topic, message.payload)
             } else {
                 let message = try decoder.decode(WCSocketMessage<String>.self, from: data)
                 let payloadData = message.payload.data(using: .utf8)
-                return try decoder.decode(WCEncryptionPayload.self, from: payloadData!)
+                return  (message.topic, try decoder.decode(WCEncryptionPayload.self, from: payloadData!))
             }
         } catch let error {
             print(error)

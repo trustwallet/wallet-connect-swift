@@ -20,13 +20,12 @@
 		BB832D1F224E56820029EB61 /* WCInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D1E224E56820029EB61 /* WCInteractor.swift */; };
 		BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D20224E6ACE0029EB61 /* JSONRPC.swift */; };
 		BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */; };
-		BB832D2B224E6CD00029EB61 /* WCSessionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */; };
+		BB832D2B224E6CD00029EB61 /* WCSessionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB832D2A224E6CD00029EB61 /* WCSessionModels.swift */; };
 		BB9B4D0B224F1E3200B9A043 /* WCEncryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D0A224F1E3200B9A043 /* WCEncryptor.swift */; };
 		BB9B4D0D224F1E8C00B9A043 /* WCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D0C224F1E8C00B9A043 /* WCError.swift */; };
 		BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D11224F218200B9A043 /* Data+Hex.swift */; };
-		BB9B4D14224F2BA500B9A043 /* WCApproveSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */; };
 		BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D212251A92D00B9A043 /* WCEvent.swift */; };
-		BB9B4D242251AD1700B9A043 /* WCClientMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */; };
+		BB9B4D242251AD1700B9A043 /* WCPeerMeta.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D232251AD1700B9A043 /* WCPeerMeta.swift */; };
 		BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */; };
 		BB9B4D9F2252108600B9A043 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */; };
 		BB9B4DA82252124700B9A043 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DA72252124700B9A043 /* WCSessionTests.swift */; };
@@ -85,13 +84,12 @@
 		BB832D1E224E56820029EB61 /* WCInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCInteractor.swift; sourceTree = "<group>"; };
 		BB832D20224E6ACE0029EB61 /* JSONRPC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRPC.swift; sourceTree = "<group>"; };
 		BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSocketMessage.swift; sourceTree = "<group>"; };
-		BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionUpdate.swift; sourceTree = "<group>"; };
+		BB832D2A224E6CD00029EB61 /* WCSessionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionModels.swift; sourceTree = "<group>"; };
 		BB9B4D0A224F1E3200B9A043 /* WCEncryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEncryptor.swift; sourceTree = "<group>"; };
 		BB9B4D0C224F1E8C00B9A043 /* WCError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCError.swift; sourceTree = "<group>"; };
 		BB9B4D11224F218200B9A043 /* Data+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Hex.swift"; sourceTree = "<group>"; };
-		BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCApproveSessionResponse.swift; sourceTree = "<group>"; };
 		BB9B4D212251A92D00B9A043 /* WCEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEvent.swift; sourceTree = "<group>"; };
-		BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCClientMeta.swift; sourceTree = "<group>"; };
+		BB9B4D232251AD1700B9A043 /* WCPeerMeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPeerMeta.swift; sourceTree = "<group>"; };
 		BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		BB9B4D9222520F5900B9A043 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEncryptorTests.swift; sourceTree = "<group>"; };
@@ -202,10 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */,
-				BB832D2A224E6CD00029EB61 /* WCSessionUpdate.swift */,
-				BB9B4D13224F2BA500B9A043 /* WCApproveSessionResponse.swift */,
+				BB832D2A224E6CD00029EB61 /* WCSessionModels.swift */,
 				BB9B4D212251A92D00B9A043 /* WCEvent.swift */,
-				BB9B4D232251AD1700B9A043 /* WCClientMeta.swift */,
+				BB9B4D232251AD1700B9A043 /* WCPeerMeta.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,6 +414,8 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustWalletCore/TrustWalletCore.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -425,6 +424,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustWalletCore.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -536,14 +537,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */,
-				BB9B4D242251AD1700B9A043 /* WCClientMeta.swift in Sources */,
+				BB9B4D242251AD1700B9A043 /* WCPeerMeta.swift in Sources */,
 				BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */,
 				BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */,
 				BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */,
-				BB832D2B224E6CD00029EB61 /* WCSessionUpdate.swift in Sources */,
+				BB832D2B224E6CD00029EB61 /* WCSessionModels.swift in Sources */,
 				BB9B4D0D224F1E8C00B9A043 /* WCError.swift in Sources */,
 				BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */,
-				BB9B4D14224F2BA500B9A043 /* WCApproveSessionResponse.swift in Sources */,
 				BB832D1F224E56820029EB61 /* WCInteractor.swift in Sources */,
 				BB9B4D0B224F1E3200B9A043 /* WCEncryptor.swift in Sources */,
 				BB832D1D224E56340029EB61 /* WCSession.swift in Sources */,
