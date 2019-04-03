@@ -19,42 +19,82 @@ class ViewController: UIViewController {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var approveButton: UIButton!
 
-    var interactor: WCInteractor!
+    var interactor: WCInteractor?
     let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/WalletConnect/swift-walletconnect-lib")
 
-    let ethAccount = "0x5Ee066cc1250E367423eD4Bad3b073241612811f"
     let privateKey = PrivateKey(data: Data(hexString: "ba005cd605d8a02e3d5dfd04234cef3a3ee4f76bfbad2722d1fb5af8e12e6764")!)!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:117efa7b-1a9e-4a96-b3f1-451f987b586a@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=f159e109f8453cad7295e937383bb6526999968a58b79c8286b6adb94f8c64f3"
+        let string = "wc:eaf299d0-dbf5-4232-b870-864d232c54b0@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=5c6482fb8fced99e8dbb9c3b3114d0f90621546941cdd597e6b20b6cc3f90970"
 
         uriField.text = string
-        addressField.text = TendermintAddress(hrp: .binanceTest, publicKey: privateKey.getPublicKeySecp256k1(compressed: true))?.description
+        addressField.text = CoinType.binance.deriveAddress(privateKey: privateKey)
+//        addressField.text = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         chainIdField.text = "1"
         approveButton.isEnabled = false
     }
 
     func connect(session: WCSession) {
-        interactor = WCInteractor(session: session, meta: clientMeta)
-        interactor.onEthSign = { [weak self] params in
-            let signed = "0x88089fa09f170b0c5173bccbe41fda6a11af5005678a601b2ac494d70f203e413b056ffbd1721137c2b400ee95139bb259f37d0e86579351e7e9e6774aa242ef1c"
+        print("==> session", session)
+        let interactor = WCInteractor(session: session, meta: clientMeta)
+
+        interactor.onEthSign = { [weak self] (id, params) in
             let alert = UIAlertController(title: "eth_sign", message: params[1], preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
-                print(signed)
+                let signed = "0x745e32f38f7ac950bd00cd6522428f8658951ba6c1174cba561b866af023bb8279c77924e87edbc46d693a13f72721c251cfdda5ac47d53379b1fb6404eb12391b"
+                self?.interactor?.approveRequest(id: id, result: signed).cauterize()
             }))
             self?.show(alert, sender: nil)
         }
+
+        interactor.onEthSendTransaction = { [weak self] (id, params) in
+            let data = try! JSONEncoder().encode(params[0])
+            let message = String(data: data, encoding: .utf8)
+            let alert = UIAlertController(title: "eth_sendTransaction", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
+                self?.interactor?.rejectRequest(id: id, message: "I don't have ethers").cauterize()
+            }))
+            self?.show(alert, sender: nil)
+        }
+
+        interactor.onBnbSign = { [weak self] (id, params) in
+            let data = try! JSONEncoder().encode(params[0])
+            let message = String(data: data, encoding: .utf8)
+            let alert = UIAlertController(title: "bnb_sign", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { [weak self] _ in
+                self?.signBnbOrder(id: id, params: params)
+            }))
+            self?.show(alert, sender: nil)
+        }
+
         interactor.connect().done { [weak self] connected in
             self?.approveButton.isEnabled = connected
             self?.connectButton.setTitle(!connected ? "Connect" : "Disconnect", for: .normal)
         }.cauterize()
+
+        self.interactor = interactor
     }
 
     func approve(accounts: [String], chainId: Int) {
-        interactor.approveSession(accounts: accounts, chainId: chainId)
+        interactor?.approveSession(accounts: accounts, chainId: chainId).done {
+            print("<== approveSession done")
+        }.cauterize()
+    }
+
+    func signBnbOrder(id: Int64, params: [WCBinanceOrderParam]) {
+        let data = try! JSONEncoder().encode(params)
+        let signature = privateKey.sign(digest: data, curve: .secp256k1)!
+        let signed = WCBinanceOrderSigned(
+            signature: signature.dropLast().hexString,
+            publicKey: privateKey.getPublicKeySecp256k1(compressed: false).data.hexString
+        )
+        interactor?.approveBnbOrder(id: id, signed: signed).done({ confirm in
+            print("<== approveBnbOrder", confirm)
+        }).cauterize()
     }
 
     @IBAction func connectTapped() {

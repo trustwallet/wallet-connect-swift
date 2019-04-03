@@ -29,6 +29,8 @@
 		BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */; };
 		BB9B4D9F2252108600B9A043 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */; };
 		BB9B4DA82252124700B9A043 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DA72252124700B9A043 /* WCSessionTests.swift */; };
+		BB9B4DC022539C0D00B9A043 /* WCBinanceOrderParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */; };
+		BB9B4DC22254673600B9A043 /* WCEthereumSendTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DC12254673600B9A043 /* WCEthereumSendTransaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,14 +72,12 @@
 		4D17FFB9BE2F29E3B5B4A848 /* Pods-WallectConnect.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnect.release.xcconfig"; path = "Target Support Files/Pods-WallectConnect/Pods-WallectConnect.release.xcconfig"; sourceTree = "<group>"; };
 		77A3B5E6DDB5B1D8695AB6FA /* Pods-WallectConnectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WallectConnectTests.debug.xcconfig"; path = "Target Support Files/Pods-WallectConnectTests/Pods-WallectConnectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AF111D836AB599EC74D9B171 /* Pods-WalletConnectApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnectApp.debug.xcconfig"; path = "Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp.debug.xcconfig"; sourceTree = "<group>"; };
-		BB832CF5224E483B0029EB61 /* WalletConnectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = WalletConnectApp.app; path = "/Users/hewig/Desktop/WalletConnectApp/build/Debug-iphoneos/WalletConnectApp.app"; sourceTree = "<absolute>"; };
 		BB832CF8224E483B0029EB61 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB832CFA224E483B0029EB61 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		BB832CFD224E483B0029EB61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BB832CFF224E483D0029EB61 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BB832D02224E483D0029EB61 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB832D04224E483D0029EB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BB832D0F224E56290029EB61 /* WallectConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = WallectConnect.framework; path = "/Users/hewig/Desktop/WalletConnectApp/build/Debug-iphoneos/WallectConnect.framework"; sourceTree = "<absolute>"; };
 		BB832D11224E56290029EB61 /* WallectConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WallectConnect.h; sourceTree = "<group>"; };
 		BB832D12224E56290029EB61 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB832D1C224E56340029EB61 /* WCSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSession.swift; sourceTree = "<group>"; };
@@ -98,6 +98,10 @@
 		BB9B4DA42252111300B9A043 /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9B4DA62252117200B9A043 /* WallectConnectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WallectConnectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9B4DA72252124700B9A043 /* WCSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
+		BB9B4DBB22539A8600B9A043 /* WalletConnectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletConnectApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DBC22539A8600B9A043 /* WallectConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WallectConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBinanceOrderParam.swift; sourceTree = "<group>"; };
+		BB9B4DC12254673600B9A043 /* WCEthereumSendTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEthereumSendTransaction.swift; sourceTree = "<group>"; };
 		F2A749110C3A3A462BA4AABE /* Pods-WalletConnectApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnectApp.release.xcconfig"; path = "Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -164,6 +168,8 @@
 				BB3197134358B26BDC5BDB58 /* Pods */,
 				3E2B2634D67EA7F1B01ABCFD /* Frameworks */,
 				BB9B4DA62252117200B9A043 /* WallectConnectTests.xctest */,
+				BB9B4DBB22539A8600B9A043 /* WalletConnectApp.app */,
+				BB9B4DBC22539A8600B9A043 /* WallectConnect.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -199,6 +205,8 @@
 		BB832D22224E6C020029EB61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				BB9B4DBE22539BA200B9A043 /* Binance */,
+				BB9B4DBD22539B9A00B9A043 /* Ethereum */,
 				BB832D23224E6C0F0029EB61 /* WCSocketMessage.swift */,
 				BB832D2A224E6CD00029EB61 /* WCSessionModels.swift */,
 				BB9B4D212251A92D00B9A043 /* WCEvent.swift */,
@@ -234,6 +242,22 @@
 			path = WallectConnectTests;
 			sourceTree = "<group>";
 		};
+		BB9B4DBD22539B9A00B9A043 /* Ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4DC12254673600B9A043 /* WCEthereumSendTransaction.swift */,
+			);
+			path = Ethereum;
+			sourceTree = "<group>";
+		};
+		BB9B4DBE22539BA200B9A043 /* Binance */ = {
+			isa = PBXGroup;
+			children = (
+				BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */,
+			);
+			path = Binance;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -267,7 +291,7 @@
 			);
 			name = WalletConnectApp;
 			productName = WalletConnectApp;
-			productReference = BB832CF5224E483B0029EB61 /* WalletConnectApp.app */;
+			productReference = BB9B4DBB22539A8600B9A043 /* WalletConnectApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BB832D0E224E56290029EB61 /* WallectConnect */ = {
@@ -286,7 +310,7 @@
 			);
 			name = WallectConnect;
 			productName = WallectConnect;
-			productReference = BB832D0F224E56290029EB61 /* WallectConnect.framework */;
+			productReference = BB9B4DBC22539A8600B9A043 /* WallectConnect.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BB9B4D8D22520F5900B9A043 /* WallectConnectTests */ = {
@@ -411,21 +435,21 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/TrustWalletCore/TrustWalletCore.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftProtobuf/SwiftProtobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/TrustWalletCore/TrustWalletCore.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustWalletCore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftProtobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TrustWalletCore.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -539,6 +563,7 @@
 				BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */,
 				BB9B4D242251AD1700B9A043 /* WCPeerMeta.swift in Sources */,
 				BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */,
+				BB9B4DC022539C0D00B9A043 /* WCBinanceOrderParam.swift in Sources */,
 				BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */,
 				BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */,
 				BB832D2B224E6CD00029EB61 /* WCSessionModels.swift in Sources */,
@@ -546,6 +571,7 @@
 				BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */,
 				BB832D1F224E56820029EB61 /* WCInteractor.swift in Sources */,
 				BB9B4D0B224F1E3200B9A043 /* WCEncryptor.swift in Sources */,
+				BB9B4DC22254673600B9A043 /* WCEthereumSendTransaction.swift in Sources */,
 				BB832D1D224E56340029EB61 /* WCSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

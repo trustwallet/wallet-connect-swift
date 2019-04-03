@@ -15,7 +15,6 @@ struct JSONRPCError: Error, Codable {
     let message: String
 }
 
-
 struct JSONRPCRequest<T: Codable>: Codable {
     let id: Int64
     let jsonrpc = JSONRPCVersion
@@ -38,6 +37,21 @@ struct JSONRPCResponse<T: Codable>: Codable {
     init(id: Int64, result: T) {
         self.id = id
         self.result = result
+    }
+}
+
+struct JSONRPCErrorResponse: Codable {
+    let jsonrpc = JSONRPCVersion
+    let id: Int64
+    let error: JSONRPCError
+}
+
+extension Encodable {
+    var encoded: Data {
+        return try! JSONEncoder().encode(self)
+    }
+    var encodedString: String {
+        return String(data: encoded, encoding: .utf8)!
     }
 }
 
