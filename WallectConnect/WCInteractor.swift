@@ -72,10 +72,7 @@ public class WCInteractor {
         pingTimer?.invalidate()
         socket.disconnect()
         connectResolver = nil
-    }
-
-    public func createSession() {
-
+        handshakeId = -1
     }
 
     public func approveSession(accounts: [String], chainId: Int) -> Promise<Void> {
@@ -93,8 +90,12 @@ public class WCInteractor {
         return encryptAndSend(data: response.encoded)
     }
 
-    public func rejectSession() {
-
+    public func rejectSession(_ message: String = "Session Rejected") -> Promise<Void> {
+        guard handshakeId > 0 else {
+            return Promise(error: WCError.invalidSession)
+        }
+        let response = JSONRPCErrorResponse(id: handshakeId, error: JSONRPCError(code: -32000, message: message))
+        return encryptAndSend(data: response.encoded)
     }
 
     public func killSession() -> Promise<Void> {

@@ -24,21 +24,38 @@ class ViewController: UIViewController {
 
     let privateKey = PrivateKey(data: Data(hexString: "ba005cd605d8a02e3d5dfd04234cef3a3ee4f76bfbad2722d1fb5af8e12e6764")!)!
 
+    var defaultAddress: String = ""
+    var defaultChainId: Int = 1
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:eaf299d0-dbf5-4232-b870-864d232c54b0@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=5c6482fb8fced99e8dbb9c3b3114d0f90621546941cdd597e6b20b6cc3f90970"
+        let string = "wc:223fec05-fc2b-46b9-801d-cac76b3c80bf@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=080ffccf7d8b106ecb4c14e6dd5de42ff06ae85317f8fcf283315da4e20166c8"
 
+        defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
-        addressField.text = CoinType.binance.deriveAddress(privateKey: privateKey)
-//        addressField.text = CoinType.ethereum.deriveAddress(privateKey: privateKey)
+        addressField.text = defaultAddress
         chainIdField.text = "1"
+        chainIdField.textAlignment = .center
         approveButton.isEnabled = false
     }
 
     func connect(session: WCSession) {
         print("==> session", session)
         let interactor = WCInteractor(session: session, meta: clientMeta)
+        let accounts = [defaultAddress]
+        let chainId = defaultChainId
+        interactor.onSessionRequest = { [weak self] (id, peer) in
+            let message = [peer.name, peer.url].joined(separator: "\n")
+            let alert = UIAlertController(title: "Session Request", message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Reject", style: .cancel, handler: { _ in
+                self?.interactor?.rejectSession().cauterize()
+            }))
+            alert.addAction(UIAlertAction(title: "Approve", style: .default, handler: { _ in
+                self?.interactor?.approveSession(accounts: accounts, chainId: chainId).cauterize()
+            }))
+            self?.show(alert, sender: nil)
+        }
 
         interactor.onEthSign = { [weak self] (id, params) in
             let alert = UIAlertController(title: "eth_sign", message: params[1], preferredStyle: .alert)
@@ -72,8 +89,7 @@ class ViewController: UIViewController {
         }
 
         interactor.connect().done { [weak self] connected in
-            self?.approveButton.isEnabled = connected
-            self?.connectButton.setTitle(!connected ? "Connect" : "Disconnect", for: .normal)
+            self?.connectionStatusUpdated(connected)
         }.cauterize()
 
         self.interactor = interactor
@@ -95,6 +111,11 @@ class ViewController: UIViewController {
         interactor?.approveBnbOrder(id: id, signed: signed).done({ confirm in
             print("<== approveBnbOrder", confirm)
         }).cauterize()
+    }
+
+    func connectionStatusUpdated(_ connected: Bool) {
+        self.approveButton.isEnabled = connected
+        self.connectButton.setTitle(!connected ? "Connect" : "Disconnect", for: .normal)
     }
 
     @IBAction func connectTapped() {
