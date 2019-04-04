@@ -30,9 +30,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:897b5b64-a4d9-40b5-9bba-80c33f043e7d@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=76698c0030e6e3afcce773420a76725e106ab83888db82fe2fbff94b6e2a17ab"
+        let string = "wc:8d1c040d-cb52-421c-a444-81bedfb2fc90@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f1adf1fa5ba5e0ed82fbeb617c77f3d5cf7bc57b26488c371e267143842d96ec"
 
-        defaultAddress = CoinType.binance.deriveAddress(privateKey: privateKey)
+        defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
         addressField.text = defaultAddress
         chainIdField.text = "1"
@@ -58,8 +58,8 @@ class ViewController: UIViewController {
         let chainId = defaultChainId
 
         interactor.onSessionRequest = { [weak self] (id, peer) in
-            let message = [peer.name, peer.url].joined(separator: "\n")
-            let alert = UIAlertController(title: "Session Request", message: message, preferredStyle: .alert)
+            let message = [peer.description, peer.url].joined(separator: "\n")
+            let alert = UIAlertController(title: peer.name, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Reject", style: .cancel, handler: { _ in
                 self?.interactor?.rejectSession().cauterize()
             }))
@@ -73,8 +73,7 @@ class ViewController: UIViewController {
             let alert = UIAlertController(title: "eth_sign", message: params[1], preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
-                let signed = "0x745e32f38f7ac950bd00cd6522428f8658951ba6c1174cba561b866af023bb8279c77924e87edbc46d693a13f72721c251cfdda5ac47d53379b1fb6404eb12391b"
-                self?.interactor?.approveRequest(id: id, result: signed).cauterize()
+                self?.signEth(id: id, message: params[1])
             }))
             self?.show(alert, sender: nil)
         }
@@ -106,13 +105,21 @@ class ViewController: UIViewController {
         }.cauterize()
     }
 
+    func signEth(id: Int64, message: String) {
+        guard let data = message.data(using: .utf8) else {
+            print("invalid message")
+            return
+        }
+//        let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
+        var result = privateKey.sign(digest: Hash.keccak256(data: data), curve: .secp256k1)!
+        result[64] += 27
+        self.interactor?.approveRequest(id: id, result: result.hexString).cauterize()
+    }
+
     func signBnbOrder(id: Int64, order: WCBinanceOrder) {
         let data = order.encoded
-        let digest = Hash.sha256(data: data)
         print("==> signbnbOrder", String(data: data, encoding: .utf8)!)
-        print("==> signbnbOrder raw", data.hexString)
-        print("==> signbnbOrder hashed", digest.hexString)
-        let signature = privateKey.sign(digest: digest, curve: .secp256k1)!
+        let signature = privateKey.sign(digest: Hash.sha256(data: data), curve: .secp256k1)!
         let signed = WCBinanceOrderSignature(
             signature: signature.dropLast().hexString,
             publicKey: privateKey.getPublicKeySecp256k1(compressed: false).data.hexString
