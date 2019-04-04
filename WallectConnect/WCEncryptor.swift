@@ -11,8 +11,6 @@ import CryptoSwift
 import Security
 
 public struct WCEncryptor {
-
-
     public static func encrypt(data: Data, with key: Data) throws -> WCEncryptionPayload {
         let ivBytes = randomBytes(16)
         let keyBytes = key.bytes
@@ -49,7 +47,7 @@ public struct WCEncryptor {
 
         let data = payloadBytes + ivBytes
         let hmacBytes = try HMAC(key: key, variant: .sha256).authenticate(data.bytes)
-        let hmac = Data(hmacBytes).hexString
+        let hmac = Data(hmacBytes).hex
         return hmac
     }
 

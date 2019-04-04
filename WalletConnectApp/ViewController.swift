@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var approveButton: UIButton!
 
     var interactor: WCInteractor?
-    let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/WalletConnect/swift-walletconnect-lib")
+    let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/hewigovens/wallet-connect-swift")
 
     let privateKey = PrivateKey(data: Data(hexString: "ba005cd605d8a02e3d5dfd04234cef3a3ee4f76bfbad2722d1fb5af8e12e6764")!)!
 
@@ -30,9 +30,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:223fec05-fc2b-46b9-801d-cac76b3c80bf@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=080ffccf7d8b106ecb4c14e6dd5de42ff06ae85317f8fcf283315da4e20166c8"
+        let string = "wc:897b5b64-a4d9-40b5-9bba-80c33f043e7d@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=76698c0030e6e3afcce773420a76725e106ab83888db82fe2fbff94b6e2a17ab"
 
-        defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
+        defaultAddress = CoinType.binance.deriveAddress(privateKey: privateKey)
         uriField.text = string
         addressField.text = defaultAddress
         chainIdField.text = "1"
@@ -43,8 +43,20 @@ class ViewController: UIViewController {
     func connect(session: WCSession) {
         print("==> session", session)
         let interactor = WCInteractor(session: session, meta: clientMeta)
+
+        configure(interactor: interactor)
+
+        interactor.connect().done { [weak self] connected in
+            self?.connectionStatusUpdated(connected)
+        }.cauterize()
+
+        self.interactor = interactor
+    }
+
+    func configure(interactor: WCInteractor) {
         let accounts = [defaultAddress]
         let chainId = defaultChainId
+
         interactor.onSessionRequest = { [weak self] (id, peer) in
             let message = [peer.name, peer.url].joined(separator: "\n")
             let alert = UIAlertController(title: "Session Request", message: message, preferredStyle: .alert)
@@ -67,8 +79,8 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onEthSendTransaction = { [weak self] (id, params) in
-            let data = try! JSONEncoder().encode(params[0])
+        interactor.onEthSendTransaction = { [weak self] (id, transaction) in
+            let data = try! JSONEncoder().encode(transaction)
             let message = String(data: data, encoding: .utf8)
             let alert = UIAlertController(title: "eth_sendTransaction", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
@@ -77,22 +89,15 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onBnbSign = { [weak self] (id, params) in
-            let data = try! JSONEncoder().encode(params[0])
-            let message = String(data: data, encoding: .utf8)
+        interactor.onBnbSign = { [weak self] (id, order) in
+            let message = order.description
             let alert = UIAlertController(title: "bnb_sign", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { [weak self] _ in
-                self?.signBnbOrder(id: id, params: params)
+                self?.signBnbOrder(id: id, order: order)
             }))
             self?.show(alert, sender: nil)
         }
-
-        interactor.connect().done { [weak self] connected in
-            self?.connectionStatusUpdated(connected)
-        }.cauterize()
-
-        self.interactor = interactor
     }
 
     func approve(accounts: [String], chainId: Int) {
@@ -101,10 +106,14 @@ class ViewController: UIViewController {
         }.cauterize()
     }
 
-    func signBnbOrder(id: Int64, params: [WCBinanceOrderParam]) {
-        let data = try! JSONEncoder().encode(params)
-        let signature = privateKey.sign(digest: data, curve: .secp256k1)!
-        let signed = WCBinanceOrderSigned(
+    func signBnbOrder(id: Int64, order: WCBinanceOrder) {
+        let data = order.encoded
+        let digest = Hash.sha256(data: data)
+        print("==> signbnbOrder", String(data: data, encoding: .utf8)!)
+        print("==> signbnbOrder raw", data.hexString)
+        print("==> signbnbOrder hashed", digest.hexString)
+        let signature = privateKey.sign(digest: digest, curve: .secp256k1)!
+        let signed = WCBinanceOrderSignature(
             signature: signature.dropLast().hexString,
             publicKey: privateKey.getPublicKeySecp256k1(compressed: false).data.hexString
         )

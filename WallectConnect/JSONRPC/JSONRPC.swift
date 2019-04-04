@@ -46,15 +46,6 @@ struct JSONRPCErrorResponse: Codable {
     let error: JSONRPCError
 }
 
-extension Encodable {
-    var encoded: Data {
-        return try! JSONEncoder().encode(self)
-    }
-    var encodedString: String {
-        return String(data: encoded, encoding: .utf8)!
-    }
-}
-
 extension JSONRPCResponse {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)

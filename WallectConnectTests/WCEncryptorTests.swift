@@ -48,7 +48,7 @@ class WCEncryptorTests: XCTestCase {
 
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
-        let request: JSONRPCRequest<[WCBinanceOrderParam]> = try WCEvent.bnbSign.decode(decrypted)
+        let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try WCEvent.bnbSign.decode(decrypted)
         XCTAssertNotNil(request)
     }
 }

@@ -29,7 +29,7 @@
 		BB9B4D2E2251C59700B9A043 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D2D2251C59700B9A043 /* Encodable+Extension.swift */; };
 		BB9B4D9F2252108600B9A043 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4D9E2252108600B9A043 /* WCEncryptorTests.swift */; };
 		BB9B4DA82252124700B9A043 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DA72252124700B9A043 /* WCSessionTests.swift */; };
-		BB9B4DC022539C0D00B9A043 /* WCBinanceOrderParam.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */; };
+		BB9B4DC022539C0D00B9A043 /* WCBinanceOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DBF22539C0D00B9A043 /* WCBinanceOrder.swift */; };
 		BB9B4DC22254673600B9A043 /* WCEthereumSendTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9B4DC12254673600B9A043 /* WCEthereumSendTransaction.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,7 +100,7 @@
 		BB9B4DA72252124700B9A043 /* WCSessionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
 		BB9B4DBB22539A8600B9A043 /* WalletConnectApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletConnectApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB9B4DBC22539A8600B9A043 /* WallectConnect.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WallectConnect.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBinanceOrderParam.swift; sourceTree = "<group>"; };
+		BB9B4DBF22539C0D00B9A043 /* WCBinanceOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBinanceOrder.swift; sourceTree = "<group>"; };
 		BB9B4DC12254673600B9A043 /* WCEthereumSendTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEthereumSendTransaction.swift; sourceTree = "<group>"; };
 		F2A749110C3A3A462BA4AABE /* Pods-WalletConnectApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnectApp.release.xcconfig"; path = "Target Support Files/Pods-WalletConnectApp/Pods-WalletConnectApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -253,7 +253,7 @@
 		BB9B4DBE22539BA200B9A043 /* Binance */ = {
 			isa = PBXGroup;
 			children = (
-				BB9B4DBF22539C0D00B9A043 /* WCBinanceOrderParam.swift */,
+				BB9B4DBF22539C0D00B9A043 /* WCBinanceOrder.swift */,
 			);
 			path = Binance;
 			sourceTree = "<group>";
@@ -563,7 +563,7 @@
 				BB832D24224E6C0F0029EB61 /* WCSocketMessage.swift in Sources */,
 				BB9B4D242251AD1700B9A043 /* WCPeerMeta.swift in Sources */,
 				BB9B4D12224F218200B9A043 /* Data+Hex.swift in Sources */,
-				BB9B4DC022539C0D00B9A043 /* WCBinanceOrderParam.swift in Sources */,
+				BB9B4DC022539C0D00B9A043 /* WCBinanceOrder.swift in Sources */,
 				BB9B4D222251A92D00B9A043 /* WCEvent.swift in Sources */,
 				BB832D21224E6ACE0029EB61 /* JSONRPC.swift in Sources */,
 				BB832D2B224E6CD00029EB61 /* WCSessionModels.swift in Sources */,

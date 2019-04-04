@@ -10,7 +10,7 @@ import Foundation
 import CryptoSwift
 
 extension Data {
-    var hexString: String {
+    var hex: String {
         return self.toHexString()
     }
 }
