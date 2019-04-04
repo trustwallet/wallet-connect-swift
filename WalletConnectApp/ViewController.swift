@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:8d1c040d-cb52-421c-a444-81bedfb2fc90@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f1adf1fa5ba5e0ed82fbeb617c77f3d5cf7bc57b26488c371e267143842d96ec"
+        let string = "wc:4c99d024-8259-41c2-a8a4-57a763c7d8e6@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=933a20ff701c781b626049893e0ab5f02eee812981ecc3f6753eeedab26bf602"
 
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
@@ -110,8 +110,8 @@ class ViewController: UIViewController {
             print("invalid message")
             return
         }
-//        let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
-        var result = privateKey.sign(digest: Hash.keccak256(data: data), curve: .secp256k1)!
+        let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
+        var result = privateKey.sign(digest: Hash.keccak256(data: prefix + data), curve: .secp256k1)!
         result[64] += 27
         self.interactor?.approveRequest(id: id, result: result.hexString).cauterize()
     }

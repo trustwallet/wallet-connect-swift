@@ -173,7 +173,7 @@ extension WCInteractor {
                 peerMeta = params.peerMeta
                 onSessionRequest?(request.id, params.peerMeta)
             // topic == clientId
-            case .ethSign:
+            case .ethSign, .ethPersonalSign:
                 let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
                 onEthSign?(request.id, request.params)
             case .ethSendTransaction:
