@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import WallectConnect
+import WalletConnect
 import PromiseKit
 import TrustWalletCore
 
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:4c99d024-8259-41c2-a8a4-57a763c7d8e6@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=933a20ff701c781b626049893e0ab5f02eee812981ecc3f6753eeedab26bf602"
+        let string = "wc:8543f08d-683c-4226-9fc5-7a02bcbc2147@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=01e24d469fb64938e5f95fbb91bae88e41adf7e1b3f8822e86ecd496b7eafc5f"
 
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string

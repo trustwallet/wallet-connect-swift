@@ -1,13 +1,13 @@
 //
 //  WCEncryptorTests.swift
-//  WallectConnectTests
+//  WalletConnectTests
 //
 //  Created by Tao Xu on 4/1/19.
 //  Copyright © 2019 Trust. All rights reserved.
 //
 
 import XCTest
-@testable import WallectConnect
+@testable import WalletConnect
 
 class WCEncryptorTests: XCTestCase {
     func testDecrypt() throws {

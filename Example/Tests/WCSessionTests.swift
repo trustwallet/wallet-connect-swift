@@ -1,13 +1,13 @@
 //
 //  WCSessionTests.swift
-//  WallectConnectTests
+//  WalletConnectTests
 //
 //  Created by Tao Xu on 4/1/19.
 //  Copyright © 2019 Trust. All rights reserved.
 //
 
 import XCTest
-import WallectConnect
+import WalletConnect
 
 class WCSessionTests: XCTestCase {
 

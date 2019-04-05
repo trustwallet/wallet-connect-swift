@@ -1,5 +1,5 @@
 PODS:
-  - CryptoSwift (0.14.0)
+  - CryptoSwift (1.0.0)
   - PromiseKit (6.8.3):
     - PromiseKit/CorePromise (= 6.8.3)
     - PromiseKit/Foundation (= 6.8.3)
@@ -9,16 +9,18 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.3):
     - PromiseKit/CorePromise
-  - Starscream (3.0.6)
+  - Starscream (3.1.0)
   - SwiftProtobuf (1.3.1)
   - TrustWalletCore (0.8.1):
     - SwiftProtobuf (~> 1.3.0)
+  - WalletConnect (0.1.0):
+    - CryptoSwift
+    - PromiseKit
+    - Starscream
 
 DEPENDENCIES:
-  - CryptoSwift
-  - PromiseKit
-  - Starscream
   - TrustWalletCore
+  - WalletConnect (from `../`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -28,13 +30,18 @@ SPEC REPOS:
     - SwiftProtobuf
     - TrustWalletCore
 
+EXTERNAL SOURCES:
+  WalletConnect:
+    :path: "../"
+
 SPEC CHECKSUMS:
-  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
-  Starscream: ef3ece99d765eeccb67de105bfa143f929026cf5
+  Starscream: 08172b481e145289c4930cb567230fb55897cfa4
   SwiftProtobuf: 84cd6b8f4fd2fc3d9fbd80a0aaf2e957d52824ec
   TrustWalletCore: 0ea4ae229b3a4d3dc0889a862fc1d00375a278c4
+  WalletConnect: 23acfef0ced3e78e71525c534bda0c9b88e99d12
 
-PODFILE CHECKSUM: 96c621c426d24c1e7cc36376b656a0e55540c9aa
+PODFILE CHECKSUM: a1e603c059b0895d70f3a913a20334918afd4244
 
 COCOAPODS: 1.6.1

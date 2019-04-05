@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BB832CF4224E483B0029EB61"
-               BuildableName = "WalletConnectApp.app"
-               BlueprintName = "WalletConnectApp"
-               ReferencedContainer = "container:WalletConnectApp.xcodeproj">
+               BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+               BuildableName = "WalletConnect_Example.app"
+               BlueprintName = "WalletConnect_Example"
+               ReferencedContainer = "container:WalletConnect.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "WalletConnect_Tests.xctest"
+               BlueprintName = "WalletConnect_Tests"
+               ReferencedContainer = "container:WalletConnect.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,14 +42,24 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "607FACE41AFB9204008FA782"
+               BuildableName = "WalletConnect_Tests.xctest"
+               BlueprintName = "WalletConnect_Tests"
+               ReferencedContainer = "container:WalletConnect.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BB832CF4224E483B0029EB61"
-            BuildableName = "WalletConnectApp.app"
-            BlueprintName = "WalletConnectApp"
-            ReferencedContainer = "container:WalletConnectApp.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "WalletConnect_Example.app"
+            BlueprintName = "WalletConnect_Example"
+            ReferencedContainer = "container:WalletConnect.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -55,10 +79,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BB832CF4224E483B0029EB61"
-            BuildableName = "WalletConnectApp.app"
-            BlueprintName = "WalletConnectApp"
-            ReferencedContainer = "container:WalletConnectApp.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "WalletConnect_Example.app"
+            BlueprintName = "WalletConnect_Example"
+            ReferencedContainer = "container:WalletConnect.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -74,10 +98,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BB832CF4224E483B0029EB61"
-            BuildableName = "WalletConnectApp.app"
-            BlueprintName = "WalletConnectApp"
-            ReferencedContainer = "container:WalletConnectApp.xcodeproj">
+            BlueprintIdentifier = "607FACCF1AFB9204008FA782"
+            BuildableName = "WalletConnect_Example.app"
+            BlueprintName = "WalletConnect_Example"
+            ReferencedContainer = "container:WalletConnect.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

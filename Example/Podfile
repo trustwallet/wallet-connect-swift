@@ -1,0 +1,12 @@
+platform :ios, '11.0'
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+inhibit_all_warnings!
+use_frameworks!
+
+target 'WalletConnect_Example' do
+  pod 'WalletConnect', :path => '../'
+  pod 'TrustWalletCore'
+  target 'WalletConnect_Tests' do
+    inherit! :search_paths
+  end
+end
