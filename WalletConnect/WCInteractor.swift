@@ -11,6 +11,7 @@ import Starscream
 import PromiseKit
 
 public typealias SessionRequestClosure = (_ id: Int64, _ peer: WCPeerMeta) -> Void
+public typealias DisconnectClosure = (Error?) -> Void
 public typealias EthSignClosure = (_ id: Int64, _ params: [String]) -> Void
 public typealias EthSendTransactionClosure = (_ id: Int64, _ transaction: WCEthereumSendTransaction) -> Void
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
@@ -34,6 +35,7 @@ public class WCInteractor {
 
     // incoming event handlers
     public var onSessionRequest: SessionRequestClosure?
+    public var onDisconnect: DisconnectClosure?
     public var onEthSign: EthSignClosure?
     public var onEthSendTransaction: EthSendTransactionClosure?
     public var onBnbSign: BnbSignClosure?
@@ -116,7 +118,7 @@ public class WCInteractor {
     }
 
     public func approveBnbOrder(id: Int64, signed: WCBinanceOrderSignature) -> Promise<WCBinanceTxConfirmParam> {
-        let result = signed.description
+        let result = signed.encodedString
         return approveRequest(id: id, result: result)
             .then { _ -> Promise<WCBinanceTxConfirmParam> in
                 return Promise { [weak self] seal in
@@ -187,6 +189,8 @@ extension WCInteractor {
                     onBnbSign?(request.id, request.params[0])
                 } else if let request: JSONRPCRequest<[WCBinanceCancelOrder]> = try? event.decode(decrypted) {
                     onBnbSign?(request.id, request.params[0])
+                } else if let request: JSONRPCRequest<[WCBinanceTransferOrder]> = try? event.decode(decrypted) {
+                    onBnbSign?(request.id, request.params[0])
                 }
                 break
             case .bnbTransactionConfirm:
@@ -235,6 +239,7 @@ extension WCInteractor {
             connectResolver?.fulfill(false)
         }
         connectResolver = nil
+        onDisconnect?(error)
     }
 
     private func onReceiveMessage(text: String) {

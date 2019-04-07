@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension Encodable {
-    var encoded: Data {
+extension Encodable {
+    public var encoded: Data {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         return try! encoder.encode(self)
     }
-    var description: String {
+    public var encodedString: String {
         return String(data: encoded, encoding: .utf8)!
     }
 }

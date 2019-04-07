@@ -15,7 +15,7 @@ public struct WCSession {
     public let bridge: URL
     public let key: Data
 
-    public init?(string: String) {
+    public static func from(string: String) -> WCSession? {
         guard string .hasPrefix("wc:") else {
             return nil
         }
@@ -40,9 +40,6 @@ public struct WCSession {
                 return nil
         }
 
-        self.topic = topic
-        self.version = version
-        self.bridge = bridgeUrl
-        self.key = Data(hex: key)
+        return WCSession(topic: topic, version: version, bridge: bridgeUrl, key: Data(hex: key))
     }
 }

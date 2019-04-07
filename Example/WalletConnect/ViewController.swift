@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var approveButton: UIButton!
 
     var interactor: WCInteractor?
-    let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/hewigovens/wallet-connect-swift")
+    let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/TrustWallet/wallet-connect-swift")
 
     let privateKey = PrivateKey(data: Data(hexString: "ba005cd605d8a02e3d5dfd04234cef3a3ee4f76bfbad2722d1fb5af8e12e6764")!)!
 
@@ -60,7 +60,7 @@ class ViewController: UIViewController {
         interactor.onSessionRequest = { [weak self] (id, peer) in
             let message = [peer.description, peer.url].joined(separator: "\n")
             let alert = UIAlertController(title: peer.name, message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Reject", style: .cancel, handler: { _ in
+            alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
                 self?.interactor?.rejectSession().cauterize()
             }))
             alert.addAction(UIAlertAction(title: "Approve", style: .default, handler: { _ in
@@ -69,9 +69,13 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
+        interactor.onDisconnect = { [weak self] (error) in
+            self?.connectionStatusUpdated(false)
+        }
+
         interactor.onEthSign = { [weak self] (id, params) in
             let alert = UIAlertController(title: "eth_sign", message: params[1], preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
                 self?.signEth(id: id, message: params[1])
             }))
@@ -89,9 +93,9 @@ class ViewController: UIViewController {
         }
 
         interactor.onBnbSign = { [weak self] (id, order) in
-            let message = order.description
+            let message = order.encodedString
             let alert = UIAlertController(title: "bnb_sign", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { [weak self] _ in
                 self?.signBnbOrder(id: id, order: order)
             }))
@@ -135,7 +139,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func connectTapped() {
-        guard let string = uriField.text, let session = WCSession(string: string) else {
+        guard let string = uriField.text, let session = WCSession.from(string: string) else {
             print("invalid uri: \(String(describing: uriField.text))")
             return
         }
