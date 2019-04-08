@@ -6,16 +6,13 @@
 
 Features:
 
-* Connect and disconnect
-* Approve / Reject / Kill session
-* Approve and reject `eth_sign` / `personal_sign` / `eth_sendTransaction`
-* Approve and reject `bnb_sign` (binance dex orders)
-
-Not implemented yet:
-
-* `eth_signTypedData`
-* createSession (this SDK is only focus on mobile client)
-* push notification (APNS)
+- [x] Connect and disconnect
+- [x] Approve / Reject / Kill session
+- [x] Approve and reject `eth_sign` / `personal_sign` / `eth_sendTransaction`
+- [x] Approve and reject `bnb_sign` (binance dex orders)
+- [ ] `eth_signTypedData`
+- [ ] createSession (this SDK is only focus on mobile client)
+- [ ] push notification (APNS)
 
 ## Example
 
