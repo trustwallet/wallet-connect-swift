@@ -1,5 +1,22 @@
 # WalletConnect
 
+[WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
+
+[![Watch Demo](https://img.youtube.com/vi/sFZzzNDLd8Y/0.jpg)](https://www.youtube.com/watch?v=sFZzzNDLd8Y)
+
+Features:
+
+* Connect and disconnect
+* Approve / Reject / Kill session
+* Approve and reject `eth_sign` / `personal_sign` / `eth_sendTransaction`
+* Approve and reject `bnb_sign` (binance dex orders)
+
+Not implemented yet:
+
+* `eth_signTypedData`
+* createSession (this SDK is only focus on mobile client)
+* push notification (APNS)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -10,7 +27,69 @@ WalletConnect is available through [CocoaPods](https://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'WalletConnect'
+pod 'WalletConnect', git: 'git@github.com:TrustWallet/wallet-connect-swift.git', branch: 'master'
+```
+
+## Usage
+
+parse session from scanned QR code:
+
+```swift
+let string = "wc:..."
+guard let session = WCSession.from(string: string) else {
+    // invalid session
+    return
+}
+// handle session
+```
+
+configure and handle incoming message:
+
+```swift
+let interactor = WCInteractor(session: session, meta: clientMeta)
+interactor.onSessionRequest = { [weak self] (id, peer) in
+    // ask for user consent
+}
+
+interactor.onDisconnect = { [weak self] (error) in
+    // handle disconnect
+}
+
+interactor.onEthSign = { [weak self] (id, params) in
+    // handle eth_sign and personal_sign
+}
+
+interactor.onEthSendTransaction = { [weak self] (id, transaction) in
+    // handle eth_sendTransaction
+}
+
+interactor.onBnbSign = { [weak self] (id, order) in
+    // handle bnb_sign
+}
+```
+
+approve session
+
+```swift
+interactor.approveSession(accounts: accounts, chainId: chainId).done {
+    print("<== approveSession done")
+}.cauterize()
+```
+
+approve request
+
+```swift
+interactor.approveRequest(id: id, result: result.hexString).done {
+    print("<== approveRequest done")
+}.cauterize()
+```
+
+approve binance dex orders
+
+```swift
+interactor?.approveBnbOrder(id: id, signed: signed).done({ confirm in
+    print("<== approveBnbOrder", confirm)
+}).cauterize()
 ```
 
 ## Author
