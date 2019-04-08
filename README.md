@@ -2,7 +2,7 @@
 
 [WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
 
-[![Watch Demo](https://img.youtube.com/vi/sFZzzNDLd8Y/0.jpg)](https://www.youtube.com/watch?v=sFZzzNDLd8Y)
+<a href="https://www.youtube.com/watch?v=sFZzzNDLd8Y" ><img src="https://img.youtube.com/vi/sFZzzNDLd8Y/maxresdefault.jpg" width="90%"></a>
 
 Features:
 
@@ -10,7 +10,11 @@ Features:
 - [x] Approve / Reject / Kill session
 - [x] Approve and reject `eth_sign` / `personal_sign` / `eth_sendTransaction`
 - [x] Approve and reject `bnb_sign` (binance dex orders)
+
+Todo:
+
 - [ ] `eth_signTypedData`
+- [ ] `wc_exchangeKey`
 - [ ] createSession (this SDK is only focus on mobile client)
 - [ ] push notification (APNS)
 
