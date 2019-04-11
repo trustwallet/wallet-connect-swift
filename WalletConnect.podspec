@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.source_files = 'WalletConnect/**/*'
   s.swift_version = '4.2'
 
-  s.dependency 'CryptoSwift'
-  s.dependency 'Starscream'
+  s.dependency 'CryptoSwift', '0.15.0'
+  s.dependency 'Starscream', '3.0.6'
   s.dependency 'PromiseKit'
 end
