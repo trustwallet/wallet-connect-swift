@@ -16,6 +16,7 @@
 		95B629BC9AE35AF7FECB685A /* Pods_WalletConnect_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58018BFAC1E050DECC1E3B9B /* Pods_WalletConnect_Example.framework */; };
 		BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46552257496400966B16 /* WCEncryptorTests.swift */; };
 		BB3C46582257496400966B16 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46562257496400966B16 /* WCSessionTests.swift */; };
+		BBFB765822681B18008CBC32 /* WCBinanceTradePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		AF6FEF50E52A07BBD8821D45 /* Pods-WalletConnect_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnect_Tests.debug.xcconfig"; path = "Target Support Files/Pods-WalletConnect_Tests/Pods-WalletConnect_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB3C46552257496400966B16 /* WCEncryptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCEncryptorTests.swift; sourceTree = "<group>"; };
 		BB3C46562257496400966B16 /* WCSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
+		BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBinanceTradePairTests.swift; sourceTree = "<group>"; };
 		C5AB14183732ECC55F0DC926 /* Pods-WalletConnect_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnect_Example.release.xcconfig"; path = "Target Support Files/Pods-WalletConnect_Example/Pods-WalletConnect_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E343012D932C98B685E7EFB2 /* Pods_WalletConnect_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletConnect_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF54DC7F0D5E8367EB168F5A /* WalletConnect.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = WalletConnect.podspec; path = ../WalletConnect.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -128,6 +130,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */,
 				BB3C46552257496400966B16 /* WCEncryptorTests.swift */,
 				BB3C46562257496400966B16 /* WCSessionTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -361,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB3C46582257496400966B16 /* WCSessionTests.swift in Sources */,
+				BBFB765822681B18008CBC32 /* WCBinanceTradePairTests.swift in Sources */,
 				BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

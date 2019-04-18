@@ -11,15 +11,15 @@ import Foundation
 public struct WCBinanceTransferOrder: WCBinanceOrder, Codable {
     public struct Message: Codable {
         public struct Coin: Codable {
-            let amount: Int64
-            let denom: String
+            public let amount: Int64
+            public let denom: String
         }
         public struct Item: Codable {
-            let address: String
-            let coins: [Coin]
+            public let address: String
+            public let coins: [Coin]
         }
-        let inputs: [Item]
-        let outputs: [Item]
+        public let inputs: [Item]
+        public let outputs: [Item]
     }
 
     public let account_number: String
