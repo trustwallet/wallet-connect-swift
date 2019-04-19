@@ -14,8 +14,8 @@ public struct WCBinanceTradePair {
     public static func from(_ symbol: String) -> WCBinanceTradePair? {
         let pair = symbol.split(separator: "_")
         guard pair.count > 1 else { return nil }
-        let parts = pair[1].split(separator: "-")
-        guard parts.count > 1 else { return nil }
-        return WCBinanceTradePair(from: String(pair[0]), to: String(parts[0]))
+        let first_parts = pair[0].split(separator: "-")
+        let second_parts = pair[1].split(separator: "-")
+        return WCBinanceTradePair(from: String(first_parts[0]), to: String(second_parts[0]))
     }
 }

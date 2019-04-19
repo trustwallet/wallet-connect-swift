@@ -18,4 +18,12 @@ class WCBinanceTradePairTests: XCTestCase {
         XCTAssertEqual(pair.from, "BNB")
         XCTAssertEqual(pair.to, "ETH.B")
     }
+
+    func testParse() {
+        let symbol = "000-0E1_BNB"
+        let pair = WCBinanceTradePair.from(symbol)!
+
+        XCTAssertEqual(pair.from, "000")
+        XCTAssertEqual(pair.to, "BNB")
+    }
 }
