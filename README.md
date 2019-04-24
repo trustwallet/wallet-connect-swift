@@ -1,7 +1,6 @@
 # WalletConnect
 
-[WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
-
+[WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol. Demo video: 
 <a href="https://www.youtube.com/watch?v=sFZzzNDLd8Y" ><img src="https://img.youtube.com/vi/sFZzzNDLd8Y/maxresdefault.jpg" width="90%"></a>
 
 Features:
@@ -14,8 +13,6 @@ Features:
 Todo:
 
 - [ ] `eth_signTypedData`
-- [ ] `wc_exchangeKey`
-- [ ] createSession (this SDK is only focus on mobile client)
 - [ ] push notification (APNS)
 
 ## Example
