@@ -13,6 +13,7 @@ Features:
 Todo:
 
 - [ ] `eth_signTypedData`
+- [ ] session persistent / recovery
 - [ ] push notification (APNS)
 
 ## Example
