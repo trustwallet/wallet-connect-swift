@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var approveButton: UIButton!
 
     var interactor: WCInteractor?
-    let clientMeta = WCPeerMeta(name: "WallectConnect SDK", url: "https://github.com/TrustWallet/wallet-connect-swift")
+    let clientMeta = WCPeerMeta(name: "WalletConnect SDK", url: "https://github.com/TrustWallet/wallet-connect-swift")
 
     let privateKey = PrivateKey(data: Data(hexString: "ba005cd605d8a02e3d5dfd04234cef3a3ee4f76bfbad2722d1fb5af8e12e6764")!)!
 

@@ -1,9 +1,18 @@
 # WalletConnect
 
-[WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol. Demo video: 
+[WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
+
+### Demo video
+
 <a href="https://www.youtube.com/watch?v=sFZzzNDLd8Y" ><img src="https://img.youtube.com/vi/sFZzzNDLd8Y/maxresdefault.jpg" width="90%"></a>
 
-Features:
+## Requirements
+
+- iOS 11
+- Xcode 10.2
+- Swift 5
+
+## Features
 
 - [x] Connect and disconnect
 - [x] Approve / Reject / Kill session
@@ -26,7 +35,7 @@ WalletConnect is available through [CocoaPods](https://cocoapods.org). To instal
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'WalletConnect', git: 'git@github.com:TrustWallet/wallet-connect-swift.git', branch: 'master'
+pod 'WalletConnect', git: 'https://github.com/TrustWallet/wallet-connect-swift', branch: 'master'
 ```
 
 ## Usage

@@ -1,6 +1,6 @@
 //
 //  Encodable+Extension.swift
-//  WallectConnect
+//  WalletConnect
 //
 //  Created by Tao Xu on 4/1/19.
 //  Copyright © 2019 Trust. All rights reserved.
