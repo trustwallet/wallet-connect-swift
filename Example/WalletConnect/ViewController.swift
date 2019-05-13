@@ -163,7 +163,7 @@ class ViewController: UIViewController {
             print("invalid chainId")
             return
         }
-        guard EthereumAddress.isValidString(string: address) || TendermintAddress.isValidString(string: address) else {
+        guard EthereumAddress.isValidString(string: address) || CosmosAddress.isValidString(string: address) else {
             print("invalid eth or bnb address")
             return
         }
