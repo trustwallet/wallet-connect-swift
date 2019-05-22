@@ -15,6 +15,8 @@ public typealias DisconnectClosure = (Error?) -> Void
 public typealias EthSignClosure = (_ id: Int64, _ params: [String]) -> Void
 public typealias EthSendTransactionClosure = (_ id: Int64, _ transaction: WCEthereumSendTransaction) -> Void
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
+public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
+public typealias ErrorClosure = (Error) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -39,6 +41,8 @@ public class WCInteractor {
     public var onEthSign: EthSignClosure?
     public var onEthSendTransaction: EthSendTransactionClosure?
     public var onBnbSign: BnbSignClosure?
+    public var onCustomRequest: CustomRequestClosure?
+    public var onError: ErrorClosure?
 
     // outgoing promise resolvers
     var connectResolver: Resolver<Bool>?
@@ -212,6 +216,7 @@ extension WCInteractor {
                 break
             }
         } catch let error {
+            onError?(error)
             print("==> handleEvent error: \(error.localizedDescription)")
         }
     }
@@ -249,15 +254,19 @@ extension WCInteractor {
             let decrypted = try WCEncryptor.decrypt(payload: payload, with: session.key)
             guard let json = try JSONSerialization.jsonObject(with: decrypted, options: [])
                 as? [String: Any] else {
-                throw WCError.badServerResponse
+                throw WCError.badJSONRPCRequest
             }
             print("<== decrypted: \(String(data: decrypted, encoding: .utf8)!)")
-            if let method = json["method"] as? String,
-                let event = WCEvent(rawValue: method) {
-                handleEvent(event, topic: topic, decrypted: decrypted)
+            if let method = json["method"] as? String {
+                if let event = WCEvent(rawValue: method) {
+                    handleEvent(event, topic: topic, decrypted: decrypted)
+                } else if let id = json["id"] as? Int64 {
+                    onCustomRequest?(id, json)
+                }
             }
         } catch let error {
-            print(error)
+            onError?(error)
+            print("==> onReceiveMessage error: \(error.localizedDescription)")
         }
     }
 }

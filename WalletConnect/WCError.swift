@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum WCError: Error {
+public enum WCError: LocalizedError {
     case badServerResponse
     case badJSONRPCRequest
     case invalidSession

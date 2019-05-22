@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct WCBinanceCancelOrder: WCBinanceOrder, Codable {
+public struct WCBinanceCancelOrder: WCBinanceOrderMessage, Codable {
     public struct Message: Codable {
         public let refid: String
         public let sender: String

@@ -1,5 +1,7 @@
 # WalletConnect
 
+[![codebeat badge](https://codebeat.co/badges/4a08c917-5cf1-4322-9c5a-62bddd588c18)](https://codebeat.co/projects/github-com-trustwallet-wallet-connect-swift-master)
+
 [WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
 
 ### Demo video

@@ -13,6 +13,17 @@ public protocol WCBinanceOrder {
     var encodedString: String { get }
 }
 
+public protocol WCBinanceOrderMessage: WCBinanceOrder {
+    associatedtype Message
+    var account_number: String { get }
+    var chain_id: String { get }
+    var data: String? { get }
+    var memo: String { get }
+    var msgs: [Message] { get }
+    var sequence: String { get }
+    var source: String { get }
+}
+
 public struct WCBinanceOrderSignature: Codable {
     public let signature: String
     public let publicKey: String

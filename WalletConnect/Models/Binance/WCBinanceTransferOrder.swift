@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct WCBinanceTransferOrder: WCBinanceOrder, Codable {
+public struct WCBinanceTransferOrder: WCBinanceOrderMessage, Codable {
     public struct Message: Codable {
         public struct Coin: Codable {
             public let amount: Int64

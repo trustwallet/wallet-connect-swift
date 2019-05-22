@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:d282a614-a21f-4226-aca1-1db4ecfa2c08@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=3890ad13ed17ce298fc7369eef7e6359864dc11c1ba5434e782c6277dc00d151"
+        let string = "wc:8cf54039-b34c-40e2-9327-2045c0a570c2@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=ddb2d442939d5964d47e16b2422a54d173f732cbac6ab882f2bd3b33d3a3f53b"
 
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
@@ -56,6 +56,12 @@ class ViewController: UIViewController {
     func configure(interactor: WCInteractor) {
         let accounts = [defaultAddress]
         let chainId = defaultChainId
+
+        interactor.onError = { [weak self] error in
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self?.show(alert, sender: nil)
+        }
 
         interactor.onSessionRequest = { [weak self] (id, peer) in
             let message = [peer.description, peer.url].joined(separator: "\n")

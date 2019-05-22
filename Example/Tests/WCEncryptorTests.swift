@@ -49,6 +49,10 @@ class WCEncryptorTests: XCTestCase {
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
         let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try WCEvent.bnbSign.decode(decrypted)
-        XCTAssertNotNil(request)
+
+        let expected = """
+    {"id":1,"jsonrpc":"2.0","method":"bnb_sign","params":[{"account_number":"666682","chain_id":"Binance-Chain-Nile","data":null,"memo":"","msgs":[{"id":"A9241D9CDC41DBFF587A236047D5836EDA6C7345-1","ordertype":2,"price":401180,"quantity":2500000000,"sender":"tbnb14yjpm8xug8dl7kr6ydsy04vrdmdxcu69kwrw78","side":2,"symbol":"BNB_BTC.B-918","timeinforce":1}],"sequence":"0","source":"1"}]}
+    """
+        XCTAssertEqual(request.encodedString, expected)
     }
 }

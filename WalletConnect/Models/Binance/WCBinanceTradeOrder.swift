@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct WCBinanceTradeOrder: WCBinanceOrder, Codable {
+public struct WCBinanceTradeOrder: WCBinanceOrderMessage, Codable {
     public struct Message: Codable {
         public let id: String
         public let ordertype: Int
