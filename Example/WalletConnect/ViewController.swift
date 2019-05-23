@@ -88,10 +88,10 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onEthSendTransaction = { [weak self] (id, transaction) in
+        interactor.onEthTransaction = { [weak self] (id, method, transaction) in
             let data = try! JSONEncoder().encode(transaction)
             let message = String(data: data, encoding: .utf8)
-            let alert = UIAlertController(title: "eth_sendTransaction", message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: method, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
                 self?.interactor?.rejectRequest(id: id, message: "I don't have ethers").cauterize()
             }))

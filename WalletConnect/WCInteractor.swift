@@ -13,7 +13,7 @@ import PromiseKit
 public typealias SessionRequestClosure = (_ id: Int64, _ peer: WCPeerMeta) -> Void
 public typealias DisconnectClosure = (Error?) -> Void
 public typealias EthSignClosure = (_ id: Int64, _ params: [String]) -> Void
-public typealias EthSendTransactionClosure = (_ id: Int64, _ transaction: WCEthereumSendTransaction) -> Void
+public typealias EthTransactionClosure = (_ id: Int64, _ method: String, _ transaction: WCEthereumTransaction) -> Void
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
@@ -39,7 +39,7 @@ public class WCInteractor {
     public var onSessionRequest: SessionRequestClosure?
     public var onDisconnect: DisconnectClosure?
     public var onEthSign: EthSignClosure?
-    public var onEthSendTransaction: EthSendTransactionClosure?
+    public var onEthTransaction: EthTransactionClosure?
     public var onBnbSign: BnbSignClosure?
     public var onCustomRequest: CustomRequestClosure?
     public var onError: ErrorClosure?
@@ -182,12 +182,12 @@ extension WCInteractor {
             case .ethSign, .ethPersonalSign:
                 let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
                 onEthSign?(request.id, request.params)
-            case .ethSendTransaction:
-                let request: JSONRPCRequest<[WCEthereumSendTransaction]> = try event.decode(decrypted)
+            case .ethSendTransaction, .ethSignTransaction:
+                let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
                 guard request.params.count > 0 else {
                     throw WCError.badJSONRPCRequest
                 }
-                onEthSendTransaction?(request.id, request.params[0])
+                onEthTransaction?(request.id, event.rawValue, request.params[0])
             case .bnbSign:
                 if let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try? event.decode(decrypted) {
                     onBnbSign?(request.id, request.params[0])

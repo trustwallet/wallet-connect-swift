@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct WCEthereumSendTransaction: Codable {
+public struct WCEthereumTransaction: Codable {
     public let from: String
     public let to: String
     public let nonce: String
