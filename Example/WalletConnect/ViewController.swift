@@ -79,8 +79,8 @@ class ViewController: UIViewController {
             self?.connectionStatusUpdated(false)
         }
 
-        interactor.onEthSign = { [weak self] (id, params) in
-            let alert = UIAlertController(title: "eth_sign", message: params[1], preferredStyle: .alert)
+        interactor.onEthSign = { [weak self] (id, event, params) in
+            let alert = UIAlertController(title: event.rawValue, message: params[1], preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
                 self?.signEth(id: id, message: params[1])
@@ -88,10 +88,10 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onEthTransaction = { [weak self] (id, method, transaction) in
+        interactor.onEthTransaction = { [weak self] (id, event, transaction) in
             let data = try! JSONEncoder().encode(transaction)
             let message = String(data: data, encoding: .utf8)
-            let alert = UIAlertController(title: method, message: message, preferredStyle: .alert)
+            let alert = UIAlertController(title: event.rawValue, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
                 self?.interactor?.rejectRequest(id: id, message: "I don't have ethers").cauterize()
             }))

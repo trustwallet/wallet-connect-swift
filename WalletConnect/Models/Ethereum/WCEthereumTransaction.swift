@@ -10,10 +10,10 @@ import Foundation
 
 public struct WCEthereumTransaction: Codable {
     public let from: String
-    public let to: String
-    public let nonce: String
-    public let gasPrice: String
-    public let gasLimit: String
-    public let value: String
+    public let to: String?
+    public let nonce: String?
+    public let gasPrice: String?
+    public let gasLimit: String?
+    public let value: String?
     public let data: String
 }

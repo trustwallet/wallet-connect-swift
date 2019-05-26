@@ -12,8 +12,8 @@ import PromiseKit
 
 public typealias SessionRequestClosure = (_ id: Int64, _ peer: WCPeerMeta) -> Void
 public typealias DisconnectClosure = (Error?) -> Void
-public typealias EthSignClosure = (_ id: Int64, _ params: [String]) -> Void
-public typealias EthTransactionClosure = (_ id: Int64, _ method: String, _ transaction: WCEthereumTransaction) -> Void
+public typealias EthSignClosure = (_ id: Int64, _ event: WCEvent, _ params: [String]) -> Void
+public typealias EthTransactionClosure = (_ id: Int64, _ event: WCEvent, _ transaction: WCEthereumTransaction) -> Void
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
@@ -181,13 +181,13 @@ extension WCInteractor {
             // topic == clientId
             case .ethSign, .ethPersonalSign:
                 let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
-                onEthSign?(request.id, request.params)
+                onEthSign?(request.id, event, request.params)
             case .ethSendTransaction, .ethSignTransaction:
                 let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
                 guard request.params.count > 0 else {
                     throw WCError.badJSONRPCRequest
                 }
-                onEthTransaction?(request.id, event.rawValue, request.params[0])
+                onEthTransaction?(request.id, event, request.params[0])
             case .bnbSign:
                 if let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try? event.decode(decrypted) {
                     onBnbSign?(request.id, request.params[0])
