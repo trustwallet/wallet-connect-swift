@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:8cf54039-b34c-40e2-9327-2045c0a570c2@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=ddb2d442939d5964d47e16b2422a54d173f732cbac6ab882f2bd3b33d3a3f53b"
+        let string = "wc:dad7a19e-d6e9-45fe-ba5f-f2116841d3c6@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=6c56b56a08ff026f3bf56a30aa971fa4b1b3064563fe8d91755190c3037aea04"
 
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
@@ -79,11 +79,11 @@ class ViewController: UIViewController {
             self?.connectionStatusUpdated(false)
         }
 
-        interactor.onEthSign = { [weak self] (id, event, params) in
-            let alert = UIAlertController(title: event.rawValue, message: params[1], preferredStyle: .alert)
+        interactor.onEthSign = { [weak self] (id, payload) in
+            let alert = UIAlertController(title: payload.method, message: payload.message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
-                self?.signEth(id: id, message: params[1])
+                self?.signEth(id: id, payload: payload)
             }))
             self?.show(alert, sender: nil)
         }
@@ -115,13 +115,21 @@ class ViewController: UIViewController {
         }.cauterize()
     }
 
-    func signEth(id: Int64, message: String) {
-        guard let data = message.data(using: .utf8) else {
-            print("invalid message")
-            return
-        }
-        let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
-        var result = privateKey.sign(digest: Hash.keccak256(data: prefix + data), curve: .secp256k1)!
+    func signEth(id: Int64, payload: WCEthereumSignPayload) {
+        let data: Data = {
+            switch payload {
+                case .sign(let data, _):
+                    return data
+                case .personalSign(let data, _):
+                    let prefix = "\u{19}Ethereum Signed Message:\n\(data)".data(using: .utf8)!
+                    return prefix + data
+                case .signTypeData(let data, _):
+                    // FIXME
+                    return data
+            }
+        }()
+
+        var result = privateKey.sign(digest: Hash.keccak256(data: data), curve: .secp256k1)!
         result[64] += 27
         self.interactor?.approveRequest(id: id, result: result.hexString).cauterize()
     }
