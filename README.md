@@ -4,7 +4,7 @@
 
 [WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
 
-### Demo video
+Demo video
 
 <a href="https://www.youtube.com/watch?v=sFZzzNDLd8Y" ><img src="https://img.youtube.com/vi/sFZzzNDLd8Y/maxresdefault.jpg" width="90%"></a>
 
@@ -23,6 +23,7 @@
 - [x] Approve and reject `bnb_sign` (binance dex orders)
 
 Todo:
+
 - [ ] session persistent / recovery
 - [ ] push notification (APNS)
 
@@ -64,12 +65,12 @@ interactor.onDisconnect = { [weak self] (error) in
     // handle disconnect
 }
 
-interactor.onEthSign = { [weak self] (id, params) in
-    // handle eth_sign and personal_sign
+interactor.onEthSign = { [weak self] (id, payload) in
+    // handle eth_sign, personal_sign, eth_signTypedData
 }
 
-interactor.onEthSendTransaction = { [weak self] (id, transaction) in
-    // handle eth_sendTransaction
+interactor.onEthTransaction = { [weak self] (id, event, transaction) in
+    // handle eth_signTransaction / eth_sendTransaction
 }
 
 interactor.onBnbSign = { [weak self] (id, order) in
