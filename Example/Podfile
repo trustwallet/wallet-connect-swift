@@ -8,7 +8,7 @@ install! 'cocoapods', :generate_multiple_pod_projects => true
 
 target 'WalletConnect_Example' do
   pod 'WalletConnect', :path => '../'
-  pod 'TrustWalletCore'
+  pod 'TrustWalletCore', git: 'https://github.com/TrustWallet/wallet-core.git', branch: 'master'
   target 'WalletConnect_Tests' do
     inherit! :search_paths
   end
