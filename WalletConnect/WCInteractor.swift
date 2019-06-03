@@ -206,12 +206,6 @@ extension WCInteractor {
             } else if let request: JSONRPCRequest<[WCBinanceTransferOrder]> = try? event.decode(decrypted) {
                 onBnbSign?(request.id, request.params[0])
             }
-        case .signTransacation:
-            let request: JSONRPCRequest<[WCTransaction]> = try event.decode(decrypted)
-            guard request.params.count > 0 else {
-                throw WCError.badJSONRPCRequest
-            }
-            onTransactionSign?(request.id, request.params[0])
         case .bnbTransactionConfirm:
             let request: JSONRPCRequest<[WCBinanceTxConfirmParam]> = try event.decode(decrypted)
             guard request.params.count > 0 else {
@@ -227,6 +221,12 @@ extension WCInteractor {
             if param.approved == false {
                 disconnect()
             }
+        case .signTransacation:
+            let request: JSONRPCRequest<[WCTransaction]> = try event.decode(decrypted)
+            guard request.params.count > 0 else {
+                throw WCError.badJSONRPCRequest
+            }
+            onTransactionSign?(request.id, request.params[0])
         }
     }
 }

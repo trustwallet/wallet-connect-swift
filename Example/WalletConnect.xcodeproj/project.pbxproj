@@ -224,7 +224,7 @@
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = FH9QG7ZJR9;
+						DevelopmentTeam = 9873B38DWV;
 						LastSwiftMigration = 1020;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -543,7 +543,7 @@
 			baseConfigurationReference = AF6FEF50E52A07BBD8821D45 /* Pods-WalletConnect_Tests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				DEVELOPMENT_TEAM = 9873B38DWV;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -563,7 +563,7 @@
 			baseConfigurationReference = 898BD455BC548305184BF04B /* Pods-WalletConnect_Tests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = FH9QG7ZJR9;
+				DEVELOPMENT_TEAM = 9873B38DWV;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
