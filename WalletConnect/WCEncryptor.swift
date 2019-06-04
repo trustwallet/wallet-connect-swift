@@ -1,10 +1,8 @@
+// Copyright © 2017-2019 Trust Wallet.
 //
-//  WCEncryptor.swift
-//  WalletConnect
-//
-//  Created by Tao Xu on 3/30/19.
-//  Copyright © 2019 Trust. All rights reserved.
-//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 
 import Foundation
 import CryptoSwift
