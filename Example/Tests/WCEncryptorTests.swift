@@ -1,10 +1,8 @@
+// Copyright © 2017-2019 Trust Wallet.
 //
-//  WCEncryptorTests.swift
-//  WalletConnectTests
-//
-//  Created by Tao Xu on 4/1/19.
-//  Copyright © 2019 Trust. All rights reserved.
-//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 
 import XCTest
 @testable import WalletConnect
@@ -50,9 +48,10 @@ class WCEncryptorTests: XCTestCase {
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
         let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try WCEvent.bnbSign.decode(decrypted)
 
+        // swiftlint:disable:next line_length
         let expected = """
-    {"id":1,"jsonrpc":"2.0","method":"bnb_sign","params":[{"account_number":"666682","chain_id":"Binance-Chain-Nile","data":null,"memo":"","msgs":[{"id":"A9241D9CDC41DBFF587A236047D5836EDA6C7345-1","ordertype":2,"price":401180,"quantity":2500000000,"sender":"tbnb14yjpm8xug8dl7kr6ydsy04vrdmdxcu69kwrw78","side":2,"symbol":"BNB_BTC.B-918","timeinforce":1}],"sequence":"0","source":"1"}]}
-    """
+{"id":1,"jsonrpc":"2.0","method":"bnb_sign","params":[{"account_number":"666682","chain_id":"Binance-Chain-Nile","data":null,"memo":"","msgs":[{"id":"A9241D9CDC41DBFF587A236047D5836EDA6C7345-1","ordertype":2,"price":401180,"quantity":2500000000,"sender":"tbnb14yjpm8xug8dl7kr6ydsy04vrdmdxcu69kwrw78","side":2,"symbol":"BNB_BTC.B-918","timeinforce":1}],"sequence":"0","source":"1"}]}
+"""
         XCTAssertEqual(request.encodedString, expected)
     }
 }

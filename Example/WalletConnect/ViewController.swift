@@ -1,10 +1,8 @@
+// Copyright © 2017-2019 Trust Wallet.
 //
-//  ViewController.swift
-//  WalletConnectApp
-//
-//  Created by Tao Xu on 3/29/19.
-//  Copyright © 2019 Trust. All rights reserved.
-//
+// This file is part of Trust. The full Trust copyright notice, including
+// terms governing use, modification, and redistribution, is contained in the
+// file LICENSE at the root of the source code distribution tree.
 
 import UIKit
 import WalletConnect
@@ -118,14 +116,14 @@ class ViewController: UIViewController {
     func signEth(id: Int64, payload: WCEthereumSignPayload) {
         let data: Data = {
             switch payload {
-                case .sign(let data, _):
-                    return data
-                case .personalSign(let data, _):
-                    let prefix = "\u{19}Ethereum Signed Message:\n\(data)".data(using: .utf8)!
-                    return prefix + data
-                case .signTypeData(let data, _):
-                    // FIXME
-                    return data
+            case .sign(let data, _):
+                return data
+            case .personalSign(let data, _):
+                let prefix = "\u{19}Ethereum Signed Message:\n\(data)".data(using: .utf8)!
+                return prefix + data
+            case .signTypeData(let data, _):
+                // FIXME
+                return data
             }
         }()
 
