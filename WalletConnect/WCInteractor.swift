@@ -15,6 +15,7 @@ public typealias EthTransactionClosure = (_ id: Int64, _ event: WCEvent, _ trans
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
+public typealias TransactionSignClosure = (_ id: Int64, _ transaction: WCTrustTransaction) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -40,6 +41,7 @@ public class WCInteractor {
     public var onEthTransaction: EthTransactionClosure?
     public var onBnbSign: BnbSignClosure?
     public var onCustomRequest: CustomRequestClosure?
+    public var onTransactionSign: TransactionSignClosure?
     public var onError: ErrorClosure?
 
     // outgoing promise resolvers
@@ -168,9 +170,7 @@ extension WCInteractor {
         // topic == session.topic
         case .sessionRequest:
             let request: JSONRPCRequest<[WCSessionRequestParam]> = try event.decode(decrypted)
-            guard let params = request.params.first else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard let params = request.params.first else { throw WCError.badJSONRPCRequest }
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
@@ -194,7 +194,7 @@ extension WCInteractor {
             onEthSign?(request.id, payload)
         case .ethSendTransaction, .ethSignTransaction:
             let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
-            guard request.params.count > 0 else { throw WCError.badJSONRPCRequest }
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onEthTransaction?(request.id, event, request.params[0])
         case .bnbSign:
             if let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try? event.decode(decrypted) {
@@ -204,27 +204,25 @@ extension WCInteractor {
             } else if let request: JSONRPCRequest<[WCBinanceTransferOrder]> = try? event.decode(decrypted) {
                 onBnbSign?(request.id, request.params[0])
             }
-            break
         case .bnbTransactionConfirm:
             let request: JSONRPCRequest<[WCBinanceTxConfirmParam]> = try event.decode(decrypted)
-            guard request.params.count > 0 else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             bnbTxConfirmResolvers[request.id]?.fulfill(request.params[0])
             bnbTxConfirmResolvers[request.id] = nil
         case .sessionUpdate:
             let request: JSONRPCRequest<[WCSessionUpdateParam]> = try event.decode(decrypted)
-            guard let param = request.params.first else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard let param = request.params.first else { throw WCError.badJSONRPCRequest }
             if param.approved == false {
                 disconnect()
             }
-        default:
-            break
+        case .signTransacation:
+            let request: JSONRPCRequest<[WCTrustTransaction]> = try event.decode(decrypted)
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
+            onTransactionSign?(request.id, request.params[0])
         }
     }
 }
+
 extension WCInteractor {
 
     private func onConnect() {

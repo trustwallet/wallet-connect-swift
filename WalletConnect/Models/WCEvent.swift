@@ -9,7 +9,6 @@ import Foundation
 public enum WCEvent: String {
     case sessionRequest = "wc_sessionRequest"
     case sessionUpdate = "wc_sessionUpdate"
-    case exchangeKey = "wc_exchangeKey"
 
     case ethSign = "eth_sign"
     case ethPersonalSign = "personal_sign"
@@ -20,6 +19,7 @@ public enum WCEvent: String {
 
     case bnbSign = "bnb_sign"
     case bnbTransactionConfirm = "bnb_tx_confirmation"
+    case signTransacation = "trust_sign_transaction"
 }
 
 extension WCEvent {
