@@ -10,8 +10,9 @@ PODS:
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
   - Starscream (3.1.0)
+  - SwiftLint (0.33.0)
   - SwiftProtobuf (1.5.0)
-  - TrustWalletCore (0.11.0):
+  - TrustWalletCore (0.12.1):
     - SwiftProtobuf (~> 1.5.0)
   - WalletConnect (0.1.0):
     - CryptoSwift
@@ -19,7 +20,8 @@ PODS:
     - Starscream
 
 DEPENDENCIES:
-  - TrustWalletCore (from `https://github.com/TrustWallet/wallet-core.git`, branch `master`)
+  - SwiftLint
+  - TrustWalletCore
   - WalletConnect (from `../`)
 
 SPEC REPOS:
@@ -27,28 +29,23 @@ SPEC REPOS:
     - CryptoSwift
     - PromiseKit
     - Starscream
+    - SwiftLint
     - SwiftProtobuf
+    - TrustWalletCore
 
 EXTERNAL SOURCES:
-  TrustWalletCore:
-    :branch: master
-    :git: https://github.com/TrustWallet/wallet-core.git
   WalletConnect:
     :path: "../"
-
-CHECKOUT OPTIONS:
-  TrustWalletCore:
-    :commit: a34eab55d7dc90a3f397627f68134bcc76475a9c
-    :git: https://github.com/TrustWallet/wallet-core.git
 
 SPEC CHECKSUMS:
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
   Starscream: 08172b481e145289c4930cb567230fb55897cfa4
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
   SwiftProtobuf: 241400280f912735c1e1b9fe675fdd2c6c4d42e2
-  TrustWalletCore: e4e77335b60c3609ed4a34a96ff99c873f61dd23
+  TrustWalletCore: 5dce530bf84901e5bb41a4a9611aa8b2c22dd3fc
   WalletConnect: 0b21907c54b4bb324bf402dd14954c60a290ad36
 
-PODFILE CHECKSUM: c27875fa803397b20a32fcb69a751f5d7aa8aec0
+PODFILE CHECKSUM: f8fe63c2c817ca4c3ecd0ded9c92a7efc585b40e
 
 COCOAPODS: 1.7.1

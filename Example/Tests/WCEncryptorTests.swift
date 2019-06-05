@@ -7,6 +7,7 @@
 import XCTest
 @testable import WalletConnect
 
+// swiftlint:disable line_length
 class WCEncryptorTests: XCTestCase {
     func testDecrypt() throws {
         let data = "1b3db3674de082d65455eba0ae61cfe7e681c8ef1132e60c8dbd8e52daf18f4fea42cc76366c83351dab6dca52682ff81f828753f89a21e1cc46587ca51ccd353914ffdd3b0394acfee392be6c22b3db9237d3f717a3777e3577dd70408c089a4c9c85130a68c43b0a8aadb00f1b8a8558798104e67aa4ff027b35d4b989e7fd3988d5dcdd563105767670be735b21c4"
@@ -31,7 +32,7 @@ class WCEncryptorTests: XCTestCase {
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
 
-        let expect =  """
+        let expect = """
 {"jsonrpc":"2.0","id":1554343834752446,"error":{"code":-32000,"message":"Session Rejected"}}
 """
         XCTAssertEqual(expect, String(data: decrypted, encoding: .utf8)!)
@@ -48,10 +49,10 @@ class WCEncryptorTests: XCTestCase {
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
         let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try WCEvent.bnbSign.decode(decrypted)
 
-        // swiftlint:disable:next line_length
         let expected = """
 {"id":1,"jsonrpc":"2.0","method":"bnb_sign","params":[{"account_number":"666682","chain_id":"Binance-Chain-Nile","data":null,"memo":"","msgs":[{"id":"A9241D9CDC41DBFF587A236047D5836EDA6C7345-1","ordertype":2,"price":401180,"quantity":2500000000,"sender":"tbnb14yjpm8xug8dl7kr6ydsy04vrdmdxcu69kwrw78","side":2,"symbol":"BNB_BTC.B-918","timeinforce":1}],"sequence":"0","source":"1"}]}
 """
         XCTAssertEqual(request.encodedString, expected)
     }
 }
+// swiftlint:enable line_length

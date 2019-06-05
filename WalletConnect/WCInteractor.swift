@@ -170,9 +170,7 @@ extension WCInteractor {
         // topic == session.topic
         case .sessionRequest:
             let request: JSONRPCRequest<[WCSessionRequestParam]> = try event.decode(decrypted)
-            guard let params = request.params.first else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard let params = request.params.first else { throw WCError.badJSONRPCRequest }
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
@@ -196,7 +194,7 @@ extension WCInteractor {
             onEthSign?(request.id, payload)
         case .ethSendTransaction, .ethSignTransaction:
             let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
-            guard request.params.count > 0 else { throw WCError.badJSONRPCRequest }
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onEthTransaction?(request.id, event, request.params[0])
         case .bnbSign:
             if let request: JSONRPCRequest<[WCBinanceTradeOrder]> = try? event.decode(decrypted) {
@@ -208,24 +206,18 @@ extension WCInteractor {
             }
         case .bnbTransactionConfirm:
             let request: JSONRPCRequest<[WCBinanceTxConfirmParam]> = try event.decode(decrypted)
-            guard request.params.count > 0 else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             bnbTxConfirmResolvers[request.id]?.fulfill(request.params[0])
             bnbTxConfirmResolvers[request.id] = nil
         case .sessionUpdate:
             let request: JSONRPCRequest<[WCSessionUpdateParam]> = try event.decode(decrypted)
-            guard let param = request.params.first else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard let param = request.params.first else { throw WCError.badJSONRPCRequest }
             if param.approved == false {
                 disconnect()
             }
         case .signTransacation:
             let request: JSONRPCRequest<[WCTransaction]> = try event.decode(decrypted)
-            guard request.params.count > 0 else {
-                throw WCError.badJSONRPCRequest
-            }
+            guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onTransactionSign?(request.id, request.params[0])
         }
     }
