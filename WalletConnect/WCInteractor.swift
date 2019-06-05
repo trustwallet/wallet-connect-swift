@@ -15,7 +15,7 @@ public typealias EthTransactionClosure = (_ id: Int64, _ event: WCEvent, _ trans
 public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
-public typealias TransactionSignClosure = (_ id: Int64, _ transaction: WCTransaction) -> Void
+public typealias TransactionSignClosure = (_ id: Int64, _ transaction: WCTrustTransaction) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -216,7 +216,7 @@ extension WCInteractor {
                 disconnect()
             }
         case .signTransacation:
-            let request: JSONRPCRequest<[WCTransaction]> = try event.decode(decrypted)
+            let request: JSONRPCRequest<[WCTrustTransaction]> = try event.decode(decrypted)
             guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onTransactionSign?(request.id, request.params[0])
         }
