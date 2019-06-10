@@ -215,7 +215,7 @@ extension WCInteractor {
             if param.approved == false {
                 disconnect()
             }
-        case .signTransacation:
+        case .trustSignTransacation:
             let request: JSONRPCRequest<[WCTrustTransaction]> = try event.decode(decrypted)
             guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onTransactionSign?(request.id, request.params[0])

@@ -19,7 +19,7 @@ public enum WCEvent: String {
 
     case bnbSign = "bnb_sign"
     case bnbTransactionConfirm = "bnb_tx_confirmation"
-    case signTransacation = "trust_sign_transaction"
+    case trustSignTransacation = "trust_signTransaction"
 }
 
 extension WCEvent {
