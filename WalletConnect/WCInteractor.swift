@@ -41,7 +41,7 @@ public class WCInteractor {
     public var onEthTransaction: EthTransactionClosure?
     public var onBnbSign: BnbSignClosure?
     public var onCustomRequest: CustomRequestClosure?
-    public var onTransactionSign: TransactionSignClosure?
+    public var onTrustTransactionSign: TransactionSignClosure?
     public var onError: ErrorClosure?
 
     // outgoing promise resolvers
@@ -218,7 +218,7 @@ extension WCInteractor {
         case .trustSignTransacation:
             let request: JSONRPCRequest<[WCTrustTransaction]> = try event.decode(decrypted)
             guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
-            onTransactionSign?(request.id, request.params[0])
+            onTrustTransactionSign?(request.id, request.params[0])
         }
     }
 }
