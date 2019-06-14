@@ -25,7 +25,7 @@ func print(_ items: Any..., separator: String = " ", terminator: String = "\n") 
     #endif
 }
 
-public class WCInteractor {
+open class WCInteractor {
     public let session: WCSession
     public var connected: Bool {
         return socket.isConnected
@@ -72,7 +72,7 @@ public class WCInteractor {
         disconnect()
     }
 
-    public func connect() -> Promise<Bool> {
+    open func connect() -> Promise<Bool> {
         if socket.isConnected {
             return Promise.value(true)
         }
@@ -82,14 +82,14 @@ public class WCInteractor {
         }
     }
 
-    public func disconnect() {
+    open func disconnect() {
         pingTimer?.invalidate()
         socket.disconnect()
         connectResolver = nil
         handshakeId = -1
     }
 
-    public func approveSession(accounts: [String], chainId: Int) -> Promise<Void> {
+    open func approveSession(accounts: [String], chainId: Int) -> Promise<Void> {
         guard handshakeId > 0 else {
             return Promise(error: WCError.invalidSession)
         }
@@ -104,7 +104,7 @@ public class WCInteractor {
         return encryptAndSend(data: response.encoded)
     }
 
-    public func rejectSession(_ message: String = "Session Rejected") -> Promise<Void> {
+    open func rejectSession(_ message: String = "Session Rejected") -> Promise<Void> {
         guard handshakeId > 0 else {
             return Promise(error: WCError.invalidSession)
         }
@@ -112,7 +112,7 @@ public class WCInteractor {
         return encryptAndSend(data: response.encoded)
     }
 
-    public func killSession() -> Promise<Void> {
+    open func killSession() -> Promise<Void> {
         let result = WCSessionUpdateParam(approved: false, chainId: nil, accounts: nil)
         let response = JSONRPCRequest(id: generateId(), method: WCEvent.sessionUpdate.rawValue, params: [result])
         return encryptAndSend(data: response.encoded)
@@ -121,7 +121,7 @@ public class WCInteractor {
         }
     }
 
-    public func approveBnbOrder(id: Int64, signed: WCBinanceOrderSignature) -> Promise<WCBinanceTxConfirmParam> {
+    open func approveBnbOrder(id: Int64, signed: WCBinanceOrderSignature) -> Promise<WCBinanceTxConfirmParam> {
         let result = signed.encodedString
         return approveRequest(id: id, result: result)
             .then { _ -> Promise<WCBinanceTxConfirmParam> in
@@ -131,12 +131,12 @@ public class WCInteractor {
             }
     }
 
-    public func approveRequest(id: Int64, result: String) -> Promise<Void> {
+    open func approveRequest(id: Int64, result: String) -> Promise<Void> {
         let response = JSONRPCResponse(id: id, result: result)
         return encryptAndSend(data: response.encoded)
     }
 
-    public func rejectRequest(id: Int64, message: String) -> Promise<Void> {
+    open func rejectRequest(id: Int64, message: String) -> Promise<Void> {
         let response = JSONRPCErrorResponse(id: id, error: JSONRPCError(code: -32000, message: message))
         return encryptAndSend(data: response.encoded)
     }
