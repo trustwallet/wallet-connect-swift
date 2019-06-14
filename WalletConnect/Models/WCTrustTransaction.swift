@@ -9,4 +9,9 @@ import Foundation
 public struct WCTrustTransaction: Codable {
     public let network: UInt32
     public let transaction: String
+
+    public init(network: UInt32, transaction: String) {
+        self.network = network
+        self.transaction = transaction
+    }
 }
