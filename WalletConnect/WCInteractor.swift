@@ -17,6 +17,7 @@ public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) 
 public typealias ErrorClosure = (Error) -> Void
 public typealias TransactionSignClosure = (_ id: Int64, _ transaction: WCTrustTransaction) -> Void
 public typealias TrustGetAccountsClosure = (_ id: Int64) -> Void
+public typealias TrustGetBalanceClosure = (_ id: Int64, _ payload: WCTrustBalanceParams) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -45,6 +46,7 @@ open class WCInteractor {
     public var onTrustTransactionSign: TransactionSignClosure?
     public var onError: ErrorClosure?
     public var onTrustGetAccounts: TrustGetAccountsClosure?
+    public var onTrustGetBalance: TrustGetBalanceClosure?
 
     // outgoing promise resolvers
     var connectResolver: Resolver<Bool>?
@@ -224,6 +226,10 @@ extension WCInteractor {
         case .trustGetAccounts:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
             onTrustGetAccounts?(request.id)
+        case .trustGetBalance:
+            let request: JSONRPCRequest<[WCTrustBalanceParams]> = try event.decode(decrypted)
+            guard let param = request.params.first else { throw WCError.badJSONRPCRequest }
+            onTrustGetBalance?(request.id, param)
         }
     }
 }
