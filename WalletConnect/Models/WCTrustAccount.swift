@@ -21,11 +21,13 @@ public struct WCTrustAccount: Codable {
 
 public struct WCToken: Codable {
     public let network: Int32
+    public let name: String
     public let symbol: String
     public let decimals: Int
 
-    public init(network: Int32, symbol: String, decimals: Int) {
+    public init(network: Int32, name: String, symbol: String, decimals: Int) {
         self.network = network
+        self.name = symbol
         self.symbol = symbol
         self.decimals = decimals
     }
