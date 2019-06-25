@@ -133,7 +133,7 @@ open class WCInteractor {
             }
     }
 
-    open func approveRequest(id: Int64, result: String) -> Promise<Void> {
+    open func approveRequest<T: Codable>(id: Int64, result: T) -> Promise<Void> {
         let response = JSONRPCResponse(id: id, result: result)
         return encryptAndSend(data: response.encoded)
     }
