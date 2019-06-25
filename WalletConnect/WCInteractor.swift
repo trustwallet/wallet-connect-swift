@@ -221,7 +221,7 @@ extension WCInteractor {
             let request: JSONRPCRequest<[WCTrustTransaction]> = try event.decode(decrypted)
             guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }
             onTrustTransactionSign?(request.id, request.params[0])
-        case .trustGetAccounts:
+        case .getAccounts:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
             onTrustGetAccounts?(request.id)        
         }
