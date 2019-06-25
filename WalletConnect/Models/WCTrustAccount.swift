@@ -20,54 +20,13 @@ public struct WCTrustAccount: Codable {
 }
 
 public struct WCToken: Codable {
-    public let type: WCTokenType
+    public let network: Int32
     public let symbol: String
     public let decimals: Int
 
-    public init(type: WCTokenType, symbol: String, decimals: Int) {
-        self.type = type
+    public init(network: Int32, symbol: String, decimals: Int) {
+        self.network = network
         self.symbol = symbol
         self.decimals = decimals
-    }
-}
-
-public enum WCTokenType {
-    case erc20(address: String)
-    case coin(slip44: UInt32)
-}
-
-extension WCTokenType: Codable {
-    private enum CodingKeys: String, CodingKey {
-        case erc20
-        case coin
-    }
-
-    enum WCTokenTypeCodingError: Error {
-        case decoding(String)
-    }
-
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        if let value = try? values.decode(String.self, forKey: .erc20) {
-            self = .erc20(address: value)
-            return
-        }
-
-        if let value = try? values.decode(UInt32.self, forKey: .coin) {
-            self = .coin(slip44: value)
-            return
-        }
-
-        throw WCTokenTypeCodingError.decoding("Fail to decode: \(dump(values))")
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .erc20(let value):
-            try container.encode(value, forKey: .erc20)
-        case .coin(let value):
-            try container.encode(value, forKey: .coin)
-        }
     }
 }
