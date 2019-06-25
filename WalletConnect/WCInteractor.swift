@@ -225,11 +225,7 @@ extension WCInteractor {
             onTrustTransactionSign?(request.id, request.params[0])
         case .trustGetAccounts:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
-            onTrustGetAccounts?(request.id)
-        case .trustGetBalance:
-            let request: JSONRPCRequest<[WCTrustBalanceParams]> = try event.decode(decrypted)
-            guard let param = request.params.first else { throw WCError.badJSONRPCRequest }
-            onTrustGetBalance?(request.id, param)
+            onTrustGetAccounts?(request.id)        
         }
     }
 }

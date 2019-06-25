@@ -21,7 +21,6 @@ public enum WCEvent: String {
     case bnbTransactionConfirm = "bnb_tx_confirmation"
     case trustSignTransacation = "trust_signTransaction"
     case trustGetAccounts = "trust_getAccounts"
-    case trustGetBalance = "trust_getBalance"
 }
 
 extension WCEvent {

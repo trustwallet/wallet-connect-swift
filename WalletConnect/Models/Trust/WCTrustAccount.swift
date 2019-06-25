@@ -8,25 +8,11 @@
 import Foundation
 
 public struct WCTrustAccount: Codable {
-    public let token: WCToken
+    public let network: UInt32
     public let address: String
 
-    public init(token: WCToken, address: String) {
-        self.token = token
-        self.address = address
-    }
-}
-
-public struct WCToken: Codable {
-    public let network: UInt32
-    public let name: String
-    public let symbol: String
-    public let decimals: Int
-
-    public init(network: UInt32, name: String, symbol: String, decimals: Int) {
+    public init(network: UInt32, address: String) {
         self.network = network
-        self.name = symbol
-        self.symbol = symbol
-        self.decimals = decimals
+        self.address = address
     }
 }
