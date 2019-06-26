@@ -11,7 +11,6 @@ public struct WCPeerMeta: Codable {
     public let url: String
     public let description: String
     public let icons: [String]
-    
 
     public init(name: String, url: String, description: String = "", icons: [String] = []) {
         self.name = name
