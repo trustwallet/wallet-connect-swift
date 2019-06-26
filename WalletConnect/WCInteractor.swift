@@ -16,7 +16,7 @@ public typealias BnbSignClosure = (_ id: Int64, _ order: WCBinanceOrder) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
 public typealias TransactionSignClosure = (_ id: Int64, _ transaction: WCTrustTransaction) -> Void
-public typealias TrustGetAccountsClosure = (_ id: Int64) -> Void
+public typealias GetAccountsClosure = (_ id: Int64) -> Void
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
@@ -44,7 +44,7 @@ open class WCInteractor {
     public var onCustomRequest: CustomRequestClosure?
     public var onTrustTransactionSign: TransactionSignClosure?
     public var onError: ErrorClosure?
-    public var onTrustGetAccounts: TrustGetAccountsClosure?
+    public var onGetAccounts: GetAccountsClosure?
 
     // outgoing promise resolvers
     var connectResolver: Resolver<Bool>?
@@ -223,7 +223,7 @@ extension WCInteractor {
             onTrustTransactionSign?(request.id, request.params[0])
         case .getAccounts:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
-            onTrustGetAccounts?(request.id)        
+            onGetAccounts?(request.id)
         }
     }
 }
