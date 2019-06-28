@@ -61,9 +61,9 @@ open class WCInteractor {
         self.clientMeta = meta
         self.socket = WebSocket.init(url: session.bridge)
 
-        socket.onConnect = { [weak self] in self?.onConnect() }
-        socket.onDisconnect = { [weak self] error in self?.onDisconnect(error: error) }
-        socket.onText = { [weak self] text in self?.onReceiveMessage(text: text) }
+        socket.onConnect = { [weak self] in self?.handleConnect() }
+        socket.onDisconnect = { [weak self] error in self?.handleDisconnect(error: error) }
+        socket.onText = { [weak self] text in self?.handleReceiveMessage(text: text) }
         socket.onPong = { _ in print("<== pong") }
         socket.onData = { data in print("<== websocketDidReceiveData: \(data.toHexString())") }
     }
@@ -225,7 +225,7 @@ extension WCInteractor {
 
 extension WCInteractor {
 
-    private func onConnect() {
+    private func handleConnect() {
         print("<== websocketDidConnect")
         pingTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { [weak socket] _ in
             print("==> ping")
@@ -237,10 +237,11 @@ extension WCInteractor {
         connectResolver = nil
     }
 
-    private func onDisconnect(error: Error?) {
+    private func handleDisconnect(error: Error?) {
         print("<== websocketDidDisconnect, error: \(error.debugDescription)")
         pingTimer?.invalidate()
         if let error = error {
+            handleError(error: error)
             connectResolver?.reject(error)
         } else {
             connectResolver?.fulfill(false)
@@ -249,7 +250,11 @@ extension WCInteractor {
         onDisconnect?(error)
     }
 
-    private func onReceiveMessage(text: String) {
+    private func handleError(error: Error) {
+        onError?(error)
+    }
+
+    private func handleReceiveMessage(text: String) {
         print("<== receive: \(text)")
         guard let (topic, payload) = WCEncryptionPayload.extract(text) else { return }
         do {
@@ -267,7 +272,7 @@ extension WCInteractor {
                 }
             }
         } catch let error {
-            onError?(error)
+            handleError(error: error)
             print("==> onReceiveMessage error: \(error.localizedDescription)")
         }
     }
