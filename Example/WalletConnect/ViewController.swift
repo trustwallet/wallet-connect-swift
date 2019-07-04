@@ -77,7 +77,7 @@ class ViewController: UIViewController {
             self?.connectionStatusUpdated(false)
         }
 
-        interactor.onEthSign = { [weak self] (id, payload) in
+        interactor.eth.onSign = { [weak self] (id, payload) in
             let alert = UIAlertController(title: payload.method, message: payload.message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
@@ -86,7 +86,7 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onEthTransaction = { [weak self] (id, event, transaction) in
+        interactor.eth.onTransaction = { [weak self] (id, event, transaction) in
             let data = try! JSONEncoder().encode(transaction)
             let message = String(data: data, encoding: .utf8)
             let alert = UIAlertController(title: event.rawValue, message: message, preferredStyle: .alert)
@@ -96,7 +96,7 @@ class ViewController: UIViewController {
             self?.show(alert, sender: nil)
         }
 
-        interactor.onBnbSign = { [weak self] (id, order) in
+        interactor.bnb.onSign = { [weak self] (id, order) in
             let message = order.encodedString
             let alert = UIAlertController(title: "bnb_sign", message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))

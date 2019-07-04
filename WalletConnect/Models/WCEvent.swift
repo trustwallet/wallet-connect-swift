@@ -24,6 +24,12 @@ public enum WCEvent: String {
 }
 
 extension WCEvent {
+
+    static let eth = Set<WCEvent>([.ethSign, .ethPersonalSign,
+                                   .ethSignTypeData, .ethSignTransaction, .ethSendTransaction])
+    static let bnb = Set<WCEvent>([.bnbSign, .bnbTransactionConfirm])
+    static let trust = Set<WCEvent>([.trustSignTransacation, .getAccounts])
+
     func decode<T: Codable>(_ data: Data) throws -> JSONRPCRequest<T> {
         return try JSONDecoder().decode(JSONRPCRequest<T>.self, from: data)
     }

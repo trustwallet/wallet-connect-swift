@@ -6,10 +6,10 @@
 
 import Foundation
 
-public enum WCError: LocalizedError {
-    case badServerResponse
-    case badJSONRPCRequest
-    case sessionInvalid
-    case sessionTimeout
-    case unknown
+public func WCLog(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+    items.forEach {
+        Swift.print($0, separator: separator, terminator: terminator)
+    }
+    #endif
 }
