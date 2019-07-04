@@ -26,7 +26,7 @@ public enum WCEvent: String {
 extension WCEvent {
 
     static let eth = Set<WCEvent>([.ethSign, .ethPersonalSign,
-                                   .ethSignTypeData, .ethSignTransaction, .ethSendTransaction])
+                                   .ethSignTypeData, .ethSignTransaction, .ethSendTransaction,])
     static let bnb = Set<WCEvent>([.bnbSign, .bnbTransactionConfirm])
     static let trust = Set<WCEvent>([.trustSignTransacation, .getAccounts])
 
