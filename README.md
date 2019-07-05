@@ -66,15 +66,15 @@ interactor.onDisconnect = { [weak self] (error) in
     // handle disconnect
 }
 
-interactor.onEthSign = { [weak self] (id, payload) in
+interactor.eth.onSign = { [weak self] (id, payload) in
     // handle eth_sign, personal_sign, eth_signTypedData
 }
 
-interactor.onEthTransaction = { [weak self] (id, event, transaction) in
+interactor.eth.onTransaction = { [weak self] (id, event, transaction) in
     // handle eth_signTransaction / eth_sendTransaction
 }
 
-interactor.onBnbSign = { [weak self] (id, order) in
+interactor.bnb.onSign = { [weak self] (id, order) in
     // handle bnb_sign
 }
 ```
