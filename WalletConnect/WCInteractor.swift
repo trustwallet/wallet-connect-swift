@@ -38,7 +38,6 @@ open class WCInteractor {
     private let socket: WebSocket
     private var handshakeId: Int64 = -1
     private var pingTimer: Timer?
-    private var sessionTimer: Timer?
 
     private var peerId: String?
     private var peerMeta: WCPeerMeta?
@@ -195,8 +194,7 @@ extension WCInteractor {
             WCLog("==> ping")
             socket?.write(ping: Data())
         }
-        sessionTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: false) { _ in
-        }
+
         subscribe(topic: session.topic)
         subscribe(topic: clientId)
         connectResolver?.fulfill(true)
