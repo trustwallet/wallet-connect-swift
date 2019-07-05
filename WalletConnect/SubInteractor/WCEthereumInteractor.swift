@@ -17,19 +17,7 @@ public struct WCEthereumInteractor {
         switch event {
         case .ethSign, .ethPersonalSign, .ethSignTypeData:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
-            guard request.params.count > 1 else { throw WCError.badJSONRPCRequest }
-            let payload: WCEthereumSignPayload = {
-                if event == .ethSign {
-                    return .sign(data: Data(hex: request.params[1]), raw: request.params)
-                } else if event == .ethPersonalSign {
-                    return .personalSign(data: Data(hex: request.params[0]), raw: request.params)
-                } else if event == .ethSignTypeData {
-                    let data = request.params[0].data(using: .utf8) ?? Data()
-                    return .signTypeData(data: data, raw: request.params)
-                } else {
-                    fatalError()
-                }
-            }()
+            let payload = try JSONDecoder().decode(WCEthereumSignPayload.self, from: decrypted)
             onSign?(request.id, payload)
         case .ethSendTransaction, .ethSignTransaction:
             let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
