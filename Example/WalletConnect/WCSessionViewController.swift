@@ -32,7 +32,7 @@ class WCSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:9904c733-8a57-435d-bc15-4ff23e450563@1?bridge=https%3A%2F%2Fwallet-bridge.binance.org&key=750c458a51ade00dcd7cccc45625716754daa53a1358a26a757360918f6c7dce"
+        let string = "wc:7b3764da-d08d-4915-836c-d88ebec3e774@1?bridge=https%3A%2F%2Fwallet-bridge.binance.org&key=56bed6d59ea4ac909f88cc9401aa1092349973fd79175dd3704e781b178149c6"
 
         defaultAddress = CoinType.binance.deriveAddress(privateKey: privateKey)
         uriField.text = string
@@ -208,28 +208,11 @@ extension WCSessionViewController {
             return
         }
 
-        backgroundTaskId = application.beginBackgroundTask(withName: "WalletConnect", expirationHandler: {
-            self.backgroundTimer?.invalidate()
-            print("background task expired")
-        })
-
-        backgroundTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            print("<== background time remainning: ", application.backgroundTimeRemaining)
-            if application.backgroundTimeRemaining < 15 {
-                self.interactor?.pause()
-            } else if application.backgroundTimeRemaining < 120 {
-                let notification = self.createWarningNotification()
-                UNUserNotificationCenter.current().add(notification, withCompletionHandler: { error in
-                    if let error = error {
-                        print("post error \(error.localizedDescription)")
-                    }
-                })
-            }
-        }
+        startBackgroundTask(application)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        print("applicationWillEnterForeground")
+        print("==> applicationWillEnterForeground")
         if let id = backgroundTaskId {
             application.endBackgroundTask(id)
         }
@@ -240,12 +223,35 @@ extension WCSessionViewController {
         }
     }
 
+    func startBackgroundTask(_ application: UIApplication) {
+        backgroundTaskId = application.beginBackgroundTask(withName: "WalletConnect", expirationHandler: {
+            self.backgroundTimer?.invalidate()
+            print("<== background task expired")
+        })
+
+        var alerted = false
+        backgroundTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            print("<== background time remainning: ", application.backgroundTimeRemaining)
+            if application.backgroundTimeRemaining < 15 {
+                self.interactor?.pause()
+            } else if application.backgroundTimeRemaining < 120 && !alerted {
+                let notification = self.createWarningNotification()
+                UNUserNotificationCenter.current().add(notification, withCompletionHandler: { error in
+                    alerted = true
+                    if let error = error {
+                        print("post error \(error.localizedDescription)")
+                    }
+                })
+            }
+        }
+    }
+
     func createWarningNotification() -> UNNotificationRequest {
         let content = UNMutableNotificationContent()
         content.title = "WC session will be interrupted"
         content.sound = UNNotificationSound.default
 
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0, repeats: false)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
 
         return UNNotificationRequest(identifier: "session.warning", content: content, trigger: trigger)
     }

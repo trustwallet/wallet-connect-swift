@@ -196,6 +196,7 @@ extension WCInteractor {
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
+            WCSessionManager.store(session, peer: params.peerMeta)
             sessionTimer?.invalidate()
             onSessionRequest?(request.id, params.peerMeta)
         case .sessionUpdate:
@@ -216,21 +217,26 @@ extension WCInteractor {
         }
     }
 
-    private func setupTimers() {
+    private func setupPingTimer() {
         pingTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak socket] _ in
             WCLog("==> ping")
             socket?.write(ping: Data())
         }
+    }
 
+    private func checkExistingSession() {
         // check if it's an existing session
-        if let existing = WCSessionManager.load(session.topic), existing == session {
+        if let existing = WCSessionManager.load(session.topic), existing.session == session {
+            peerMeta = existing.peer
             return
         }
 
+        // we only setup timer for new sessions
         sessionTimer = Timer.scheduledTimer(withTimeInterval: sessionRequestTimeout, repeats: false) { [weak self] _ in
             self?.onSessionRequestTimeout()
         }
     }
+
 
     private func stopTimers() {
         pingTimer?.invalidate()
@@ -247,15 +253,14 @@ extension WCInteractor {
     private func onConnect() {
         WCLog("<== websocketDidConnect")
 
-        setupTimers()
+        setupPingTimer()
+        checkExistingSession()
 
         subscribe(topic: session.topic)
         subscribe(topic: clientId)
 
         connectResolver?.fulfill(true)
         connectResolver = nil
-
-        WCSessionManager.store(session)
 
         state = .connected
     }
