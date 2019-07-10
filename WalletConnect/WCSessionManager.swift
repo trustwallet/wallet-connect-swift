@@ -8,27 +8,28 @@ import Foundation
 
 public struct WCSessionManager {
 
-    struct Cache: Codable {
+    struct CacheItem: Codable {
         let session: WCSession
-        let peer: WCPeerMeta
+        let peerId: String
+        let peerMeta: WCPeerMeta
     }
 
     static let prefix = "org.walletconnect.sessions"
 
-    static var allSessions: [String: Cache] {
-        let sessions: [String: Cache] = UserDefaults.standard.codableValue(forKey: prefix) ?? [:]
+    static var allSessions: [String: CacheItem] {
+        let sessions: [String: CacheItem] = UserDefaults.standard.codableValue(forKey: prefix) ?? [:]
         return sessions
     }
 
-    public static func store(_ session: WCSession, peer: WCPeerMeta) {
+    public static func store(_ session: WCSession, peerId: String, peerMeta: WCPeerMeta) {
         var sessions = allSessions
-        sessions[session.topic] = Cache(session: session, peer: peer)
+        sessions[session.topic] = CacheItem(session: session, peerId: peerId, peerMeta: peerMeta)
         store(sessions)
     }
 
-    public static func load(_ topic: String) -> (session: WCSession, peer: WCPeerMeta)? {
+    public static func load(_ topic: String) -> (session: WCSession, peerId: String, peerMeta: WCPeerMeta)? {
         guard let item = allSessions[topic] else { return nil }
-        return (item.session, item.peer)
+        return (item.session, item.peerId, item.peerMeta)
     }
 
     public static func clear( _ topic: String) {
@@ -41,7 +42,7 @@ public struct WCSessionManager {
         store([:])
     }
 
-    private static func store(_ sessions: [String: Cache]) {
+    private static func store(_ sessions: [String: CacheItem]) {
         let data = try? JSONEncoder().encode(sessions)
         UserDefaults.standard.setCodable(sessions, forKey: prefix)
     }

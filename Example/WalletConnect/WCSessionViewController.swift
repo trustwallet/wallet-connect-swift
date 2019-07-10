@@ -25,6 +25,7 @@ class WCSessionViewController: UIViewController {
 
     var defaultAddress: String = ""
     var defaultChainId: Int = 1
+    var recoverSession: Bool = false
 
     private var backgroundTaskId: UIBackgroundTaskIdentifier?
     private weak var backgroundTimer: Timer?
@@ -32,7 +33,7 @@ class WCSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:7b3764da-d08d-4915-836c-d88ebec3e774@1?bridge=https%3A%2F%2Fwallet-bridge.binance.org&key=56bed6d59ea4ac909f88cc9401aa1092349973fd79175dd3704e781b178149c6"
+        let string = "wc:cabeb6d5-126c-47ea-a5f9-9c173f249fbc@1?bridge=https%3A%2F%2Fwallet-bridge.binance.org&key=8dd0225c4ff28400f49dcfef128861907e08f77ee0d4c7c5d147ffbfb3b2e30d"
 
         defaultAddress = CoinType.binance.deriveAddress(privateKey: privateKey)
         uriField.text = string
@@ -79,7 +80,7 @@ class WCSessionViewController: UIViewController {
 
         interactor.onDisconnect = { [weak self] (error) in
             if let error = error {
-                self?.present(error: error)
+                print(error)
             }
             self?.connectionStatusUpdated(false)
         }
@@ -208,6 +209,8 @@ extension WCSessionViewController {
             return
         }
 
+        recoverSession = true
+//        interactor?.pause()
         startBackgroundTask(application)
     }
 
@@ -218,8 +221,10 @@ extension WCSessionViewController {
         }
         backgroundTimer?.invalidate()
 
-        if interactor?.state == .paused {
-            interactor?.resume()
+        if recoverSession {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+                self.interactor?.resume()
+            }
         }
     }
 

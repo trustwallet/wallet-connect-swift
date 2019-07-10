@@ -88,8 +88,8 @@ open class WCInteractor {
     }
 
     open func pause() {
-        socket.disconnect(forceTimeout: nil, closeCode: CloseCode.goingAway.rawValue)
         state = .paused
+        socket.disconnect(forceTimeout: nil, closeCode: CloseCode.goingAway.rawValue)
     }
 
     open func resume() {
@@ -196,7 +196,7 @@ extension WCInteractor {
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
-            WCSessionManager.store(session, peer: params.peerMeta)
+            WCSessionManager.store(session, peerId: params.peerId, peerMeta: params.peerMeta)
             sessionTimer?.invalidate()
             onSessionRequest?(request.id, params.peerMeta)
         case .sessionUpdate:
@@ -227,7 +227,8 @@ extension WCInteractor {
     private func checkExistingSession() {
         // check if it's an existing session
         if let existing = WCSessionManager.load(session.topic), existing.session == session {
-            peerMeta = existing.peer
+            peerId = existing.peerId
+            peerMeta = existing.peerMeta
             return
         }
 
@@ -236,7 +237,6 @@ extension WCInteractor {
             self?.onSessionRequestTimeout()
         }
     }
-
 
     private func stopTimers() {
         pingTimer?.invalidate()
@@ -275,7 +275,7 @@ extension WCInteractor {
         } else {
             connectResolver?.fulfill(false)
         }
-        
+
         connectResolver = nil
         onDisconnect?(error)
 
