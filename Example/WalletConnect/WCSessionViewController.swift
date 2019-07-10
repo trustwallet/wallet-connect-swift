@@ -26,6 +26,7 @@ class WCSessionViewController: UIViewController {
     var defaultAddress: String = ""
     var defaultChainId: Int = 1
     var recoverSession: Bool = false
+    var notificationGranted: Bool = false
 
     private var backgroundTaskId: UIBackgroundTaskIdentifier?
     private weak var backgroundTimer: Timer?
@@ -33,14 +34,22 @@ class WCSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:cabeb6d5-126c-47ea-a5f9-9c173f249fbc@1?bridge=https%3A%2F%2Fwallet-bridge.binance.org&key=8dd0225c4ff28400f49dcfef128861907e08f77ee0d4c7c5d147ffbfb3b2e30d"
+        let string = "wc:c7c77617-d043-4e9f-abf6-ab02c6e403de@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f1c395716a8839248d0244454955a91b252b1874e52972b7c3b2ca57a577b629"
 
-        defaultAddress = CoinType.binance.deriveAddress(privateKey: privateKey)
+        defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
         addressField.text = defaultAddress
-        chainIdField.text = "714"
+        chainIdField.text = "1"
         chainIdField.textAlignment = .center
         approveButton.isEnabled = false
+
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+            print("<== notification permission: \(granted)")
+            if let error = error {
+                print(error)
+            }
+            self.notificationGranted = granted
+        }
     }
 
     func connect(session: WCSession) {
@@ -87,7 +96,9 @@ class WCSessionViewController: UIViewController {
 
         interactor.eth.onSign = { [weak self] (id, payload) in
             let alert = UIAlertController(title: payload.method, message: payload.message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+                self?.interactor?.rejectRequest(id: id, message: "User canceled").cauterize()
+            }))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { _ in
                 self?.signEth(id: id, payload: payload)
             }))
@@ -107,7 +118,9 @@ class WCSessionViewController: UIViewController {
         interactor.bnb.onSign = { [weak self] (id, order) in
             let message = order.encodedString
             let alert = UIAlertController(title: "bnb_sign", message: message, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { [weak self] _ in
+                self?.interactor?.rejectRequest(id: id, message: "User canceled").cauterize()
+            }))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { [weak self] _ in
                 self?.signBnbOrder(id: id, order: order)
             }))
@@ -139,7 +152,7 @@ class WCSessionViewController: UIViewController {
 
         var result = privateKey.sign(digest: Hash.keccak256(data: data), curve: .secp256k1)!
         result[64] += 27
-        self.interactor?.approveRequest(id: id, result: result.hexString).cauterize()
+        self.interactor?.approveRequest(id: id, result: "0x" + result.hexString).cauterize()
     }
 
     func signBnbOrder(id: Int64, order: WCBinanceOrder) {
@@ -159,7 +172,7 @@ class WCSessionViewController: UIViewController {
 
     func connectionStatusUpdated(_ connected: Bool) {
         self.approveButton.isEnabled = connected
-        self.connectButton.setTitle(!connected ? "Connect" : "Disconnect", for: .normal)
+        self.connectButton.setTitle(!connected ? "Connect" : "Kill Session", for: .normal)
     }
 
     func present(error: Error) {
@@ -209,9 +222,11 @@ extension WCSessionViewController {
             return
         }
 
-        recoverSession = true
-//        interactor?.pause()
-        startBackgroundTask(application)
+        if notificationGranted {
+            pauseInteractor()
+        } else {
+            startBackgroundTask(application)
+        }
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -238,7 +253,7 @@ extension WCSessionViewController {
         backgroundTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
             print("<== background time remainning: ", application.backgroundTimeRemaining)
             if application.backgroundTimeRemaining < 15 {
-                self.interactor?.pause()
+                self.pauseInteractor()
             } else if application.backgroundTimeRemaining < 120 && !alerted {
                 let notification = self.createWarningNotification()
                 UNUserNotificationCenter.current().add(notification, withCompletionHandler: { error in
@@ -249,6 +264,11 @@ extension WCSessionViewController {
                 })
             }
         }
+    }
+
+    func pauseInteractor() {
+        recoverSession = true
+        interactor?.pause()
     }
 
     func createWarningNotification() -> UNNotificationRequest {
