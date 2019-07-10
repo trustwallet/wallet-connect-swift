@@ -10,6 +10,6 @@ public enum WCError: LocalizedError {
     case badServerResponse
     case badJSONRPCRequest
     case sessionInvalid
-    case sessionTimeout
+    case sessionRequestTimeout
     case unknown
 }

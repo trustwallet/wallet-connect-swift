@@ -13,11 +13,17 @@ public typealias DisconnectClosure = (Error?) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
 
+public enum WCInteractorState {
+    case connected
+    case connecting
+    case paused
+    case disconnected
+}
+
 open class WCInteractor {
     public let session: WCSession
-    public var connected: Bool {
-        return socket.isConnected
-    }
+
+    public private(set) var state: WCInteractorState
 
     public let clientId: String
     public let clientMeta: WCPeerMeta
@@ -37,16 +43,23 @@ open class WCInteractor {
 
     private let socket: WebSocket
     private var handshakeId: Int64 = -1
-    private var pingTimer: Timer?
+    private weak var pingTimer: Timer?
+    private weak var sessionTimer: Timer?
+    private let sessionRequestTimeout: TimeInterval
 
     private var peerId: String?
     private var peerMeta: WCPeerMeta?
 
-    public init(session: WCSession, meta: WCPeerMeta) {
+    public init(session: WCSession, meta: WCPeerMeta, sessionRequestTimeout: TimeInterval = 20) {
         self.session = session
         self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
         self.clientMeta = meta
-        self.socket = WebSocket.init(url: session.bridge)
+        self.sessionRequestTimeout = sessionRequestTimeout
+        self.state = .disconnected
+
+        var request = URLRequest(url: session.bridge)
+        request.timeoutInterval = sessionRequestTimeout
+        self.socket = WebSocket.init(request: request)
 
         self.eth = WCEthereumInteractor()
         self.bnb = WCBinanceInteractor()
@@ -68,16 +81,32 @@ open class WCInteractor {
             return Promise.value(true)
         }
         socket.connect()
+        state = .connecting
         return Promise<Bool> { [weak self] seal in
             self?.connectResolver = seal
         }
     }
 
+    open func pause() {
+        socket.disconnect(forceTimeout: nil, closeCode: CloseCode.goingAway.rawValue)
+        state = .paused
+    }
+
+    open func resume() {
+        socket.connect()
+        state = .connecting
+    }
+
     open func disconnect() {
-        pingTimer?.invalidate()
+        stopTimers()
+
         socket.disconnect()
+        state = .disconnected
+
         connectResolver = nil
         handshakeId = -1
+
+        WCSessionManager.clear(session.topic)
     }
 
     open func approveSession(accounts: [String], chainId: Int) -> Promise<Void> {
@@ -106,10 +135,11 @@ open class WCInteractor {
     open func killSession() -> Promise<Void> {
         let result = WCSessionUpdateParam(approved: false, chainId: nil, accounts: nil)
         let response = JSONRPCRequest(id: generateId(), method: WCEvent.sessionUpdate.rawValue, params: [result])
+        let topic = session.topic
         return encryptAndSend(data: response.encoded)
             .map { [weak self] in
-            self?.disconnect()
-        }
+                self?.disconnect()
+            }
     }
 
     open func approveBnbOrder(id: Int64, signed: WCBinanceOrderSignature) -> Promise<WCBinanceTxConfirmParam> {
@@ -166,6 +196,7 @@ extension WCInteractor {
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
+            sessionTimer?.invalidate()
             onSessionRequest?(request.id, params.peerMeta)
         case .sessionUpdate:
             // topic == clientId
@@ -184,33 +215,66 @@ extension WCInteractor {
             }
         }
     }
+
+    private func setupTimers() {
+        pingTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak socket] _ in
+            WCLog("==> ping")
+            socket?.write(ping: Data())
+        }
+
+        // check if it's an existing session
+        if let existing = WCSessionManager.load(session.topic), existing == session {
+            return
+        }
+
+        sessionTimer = Timer.scheduledTimer(withTimeInterval: sessionRequestTimeout, repeats: false) { [weak self] _ in
+            self?.onSessionRequestTimeout()
+        }
+    }
+
+    private func stopTimers() {
+        pingTimer?.invalidate()
+        sessionTimer?.invalidate()
+    }
+
+    private func onSessionRequestTimeout() {
+        onDisconnect(error: WCError.sessionRequestTimeout)
+    }
 }
 
 // MARK: WebSocket event handler
 extension WCInteractor {
     private func onConnect() {
         WCLog("<== websocketDidConnect")
-        pingTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true) { [weak socket] _ in
-            WCLog("==> ping")
-            socket?.write(ping: Data())
-        }
+
+        setupTimers()
 
         subscribe(topic: session.topic)
         subscribe(topic: clientId)
+
         connectResolver?.fulfill(true)
         connectResolver = nil
+
+        WCSessionManager.store(session)
+
+        state = .connected
     }
 
     private func onDisconnect(error: Error?) {
         WCLog("<== websocketDidDisconnect, error: \(error.debugDescription)")
-        pingTimer?.invalidate()
+
+        stopTimers()
+
         if let error = error {
             connectResolver?.reject(error)
         } else {
             connectResolver?.fulfill(false)
         }
+        
         connectResolver = nil
         onDisconnect?(error)
+
+        state = .disconnected
     }
 
     private func onReceiveMessage(text: String) {
