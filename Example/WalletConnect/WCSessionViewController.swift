@@ -34,7 +34,7 @@ class WCSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:c7c77617-d043-4e9f-abf6-ab02c6e403de@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=f1c395716a8839248d0244454955a91b252b1874e52972b7c3b2ca57a577b629"
+        let string = "wc:fcfecccf-4930-46b9-9f42-5648579c1658@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=4941e24abe9cce7822c17ebeadcd2f25a96b6e6904b9e4ec0942446ad5de8a18"
 
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string

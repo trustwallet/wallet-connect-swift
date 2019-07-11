@@ -16,11 +16,14 @@ class WCEncryptorTests: XCTestCase {
         let key = Data(hex: "5caa3a74154cee16bd1b570a1330be46e086474ac2f4720530662ef1a469662c")
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
+        let request = try JSONDecoder().decode(JSONRPCRequest<[WCSessionUpdateParam]>.self, from: decrypted)
 
         let expect =  """
 {"id":1554098597199736,"jsonrpc":"2.0","method":"wc_sessionUpdate","params":[{"approved":false,"chainId":null,"accounts":null}]}
 """
         XCTAssertEqual(expect, String(data: decrypted, encoding: .utf8)!)
+        XCTAssertEqual(request.method, "wc_sessionUpdate")
+        XCTAssertEqual(request.params[0].approved, false)
     }
 
     func testDecryptRejectSession() throws {
@@ -31,11 +34,13 @@ class WCEncryptorTests: XCTestCase {
         let key = Data(hex: "bbc82a01ebdb14698faee4a9e5038de72c995a9f6bcdb21903d62408b0c5ca96")
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
+        let rpcError = try JSONDecoder().decode(JSONRPCErrorResponse.self, from: decrypted)
 
         let expect = """
 {"jsonrpc":"2.0","id":1554343834752446,"error":{"code":-32000,"message":"Session Rejected"}}
 """
         XCTAssertEqual(expect, String(data: decrypted, encoding: .utf8)!)
+        XCTAssertEqual(rpcError.error.code, -32000)
     }
 
     func testDecryptBnbSign() throws {

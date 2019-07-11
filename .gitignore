@@ -73,3 +73,6 @@ Carthage/Build
 # node
 node_modules
 JS/staging
+
+# codecov
+*.coverage.txt
