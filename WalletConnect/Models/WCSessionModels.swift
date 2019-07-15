@@ -6,16 +6,10 @@
 
 import Foundation
 
-public struct WCExchangeKeyParam: Codable {
-    let peerId: String
-    let peerMeta: WCPeerMeta
-    let nextKey: String
-}
-
 public struct WCSessionRequestParam: Codable {
-    let peerId: String
-    let peerMeta: WCPeerMeta
-    let chainId: String?
+    public let peerId: String
+    public let peerMeta: WCPeerMeta
+    public let chainId: String?
 }
 
 public struct WCSessionUpdateParam: Codable {

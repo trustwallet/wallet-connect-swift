@@ -6,30 +6,43 @@
 
 import Foundation
 
-public struct WCSessionManager {
+public struct WCSessionStoreItem: Codable {
+    public let session: WCSession
+    public let peerId: String
+    public let peerMeta: WCPeerMeta
+    public let autoSign: Bool
+    public let date: Date
+}
 
-    struct CacheItem: Codable {
-        let session: WCSession
-        let peerId: String
-        let peerMeta: WCPeerMeta
-    }
+public struct WCSessionStore {
 
     static let prefix = "org.walletconnect.sessions"
 
-    static var allSessions: [String: CacheItem] {
-        let sessions: [String: CacheItem] = UserDefaults.standard.codableValue(forKey: prefix) ?? [:]
+    static var allSessions: [String: WCSessionStoreItem] {
+        let sessions: [String: WCSessionStoreItem] = UserDefaults.standard.codableValue(forKey: prefix) ?? [:]
         return sessions
     }
 
-    public static func store(_ session: WCSession, peerId: String, peerMeta: WCPeerMeta) {
+    public static func store(_ session: WCSession, peerId: String, peerMeta: WCPeerMeta, autoSign: Bool = false, date: Date = Date()) {
+        let item = WCSessionStoreItem(
+            session: session,
+            peerId: peerId,
+            peerMeta: peerMeta,
+            autoSign: autoSign,
+            date: date
+        )
+        store(item)
+    }
+
+    public static func store(_ item: WCSessionStoreItem) {
         var sessions = allSessions
-        sessions[session.topic] = CacheItem(session: session, peerId: peerId, peerMeta: peerMeta)
+        sessions[item.session.topic] = item
         store(sessions)
     }
 
-    public static func load(_ topic: String) -> (session: WCSession, peerId: String, peerMeta: WCPeerMeta)? {
+    public static func load(_ topic: String) -> WCSessionStoreItem? {
         guard let item = allSessions[topic] else { return nil }
-        return (item.session, item.peerId, item.peerMeta)
+        return item
     }
 
     public static func clear( _ topic: String) {
@@ -42,7 +55,7 @@ public struct WCSessionManager {
         store([:])
     }
 
-    private static func store(_ sessions: [String: CacheItem]) {
+    private static func store(_ sessions: [String: WCSessionStoreItem]) {
         let data = try? JSONEncoder().encode(sessions)
         UserDefaults.standard.setCodable(sessions, forKey: prefix)
     }

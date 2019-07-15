@@ -8,7 +8,7 @@ import Foundation
 import WalletConnect
 
 func loadJSON(filename: String, extension: String? = "json", subdirectory: String? = "test_data") throws -> Data {
-    let dataUrl = Bundle(for: WCSessionManagerTests.self).url(forResource: filename, withExtension: `extension`, subdirectory: subdirectory)!
+    let dataUrl = Bundle(for: WCSessionStoreTests.self).url(forResource: filename, withExtension: `extension`, subdirectory: subdirectory)!
     let data = try Data(contentsOf: dataUrl)
     return data
 }

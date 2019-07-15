@@ -8,7 +8,7 @@ import Foundation
 import Starscream
 import PromiseKit
 
-public typealias SessionRequestClosure = (_ id: Int64, _ peer: WCPeerMeta) -> Void
+public typealias SessionRequestClosure = (_ id: Int64, _ peerParam: WCSessionRequestParam) -> Void
 public typealias DisconnectClosure = (Error?) -> Void
 public typealias CustomRequestClosure = (_ id: Int64, _ request: [String: Any]) -> Void
 public typealias ErrorClosure = (Error) -> Void
@@ -59,7 +59,7 @@ open class WCInteractor {
 
         var request = URLRequest(url: session.bridge)
         request.timeoutInterval = sessionRequestTimeout
-        self.socket = WebSocket.init(request: request)
+        self.socket = WebSocket(request: request)
 
         self.eth = WCEthereumInteractor()
         self.bnb = WCBinanceInteractor()
@@ -106,7 +106,7 @@ open class WCInteractor {
         connectResolver = nil
         handshakeId = -1
 
-        WCSessionManager.clear(session.topic)
+        WCSessionStore.clear(session.topic)
     }
 
     open func approveSession(accounts: [String], chainId: Int) -> Promise<Void> {
@@ -196,9 +196,8 @@ extension WCInteractor {
             handshakeId = request.id
             peerId = params.peerId
             peerMeta = params.peerMeta
-            WCSessionManager.store(session, peerId: params.peerId, peerMeta: params.peerMeta)
             sessionTimer?.invalidate()
-            onSessionRequest?(request.id, params.peerMeta)
+            onSessionRequest?(request.id, params)
         case .sessionUpdate:
             // topic == clientId
             let request: JSONRPCRequest<[WCSessionUpdateParam]> = try event.decode(decrypted)
@@ -226,7 +225,7 @@ extension WCInteractor {
 
     private func checkExistingSession() {
         // check if it's an existing session
-        if let existing = WCSessionManager.load(session.topic), existing.session == session {
+        if let existing = WCSessionStore.load(session.topic), existing.session == session {
             peerId = existing.peerId
             peerMeta = existing.peerMeta
             return

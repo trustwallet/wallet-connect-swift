@@ -75,7 +75,8 @@ class WCSessionViewController: UIViewController {
             self?.present(error: error)
         }
 
-        interactor.onSessionRequest = { [weak self] (id, peer) in
+        interactor.onSessionRequest = { [weak self] (id, peerParam) in
+            let peer = peerParam.peerMeta
             let message = [peer.description, peer.url].joined(separator: "\n")
             let alert = UIAlertController(title: peer.name, message: message, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
