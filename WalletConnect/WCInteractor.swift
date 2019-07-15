@@ -283,6 +283,8 @@ extension WCInteractor {
 
     private func onReceiveMessage(text: String) {
         WCLog("<== receive: \(text)")
+        // handle ping in text format :(
+        if text == "ping" { return socket.write(pong: Data()) }
         guard let (topic, payload) = WCEncryptionPayload.extract(text) else { return }
         do {
             let decrypted = try WCEncryptor.decrypt(payload: payload, with: session.key)

@@ -18,7 +18,7 @@ public struct WCSessionStore {
 
     static let prefix = "org.walletconnect.sessions"
 
-    static var allSessions: [String: WCSessionStoreItem] {
+    public static var allSessions: [String: WCSessionStoreItem] {
         let sessions: [String: WCSessionStoreItem] = UserDefaults.standard.codableValue(forKey: prefix) ?? [:]
         return sessions
     }
