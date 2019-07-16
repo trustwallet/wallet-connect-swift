@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		5944A2D390134C9FF57ED3E8 /* Pods_WalletConnect_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E343012D932C98B685E7EFB2 /* Pods_WalletConnect_Tests.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
+		607FACD81AFB9204008FA782 /* WCSessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* WCSessionViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		95B629BC9AE35AF7FECB685A /* Pods_WalletConnect_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58018BFAC1E050DECC1E3B9B /* Pods_WalletConnect_Example.framework */; };
 		BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46552257496400966B16 /* WCEncryptorTests.swift */; };
 		BB3C46582257496400966B16 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46562257496400966B16 /* WCSessionTests.swift */; };
+		BBC3209222D6D6AC000D5A77 /* WCSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */; };
+		BBC3209622D6D994000D5A77 /* test_data in Resources */ = {isa = PBXBuildFile; fileRef = BBC3209522D6D994000D5A77 /* test_data */; };
+		BBC3209822D6DDC1000D5A77 /* WCPeerMetaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */; };
+		BBC3209A22D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3209922D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift */; };
 		BBFB765822681B18008CBC32 /* WCBinanceTradePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +39,7 @@
 		607FACD01AFB9204008FA782 /* WalletConnect_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletConnect_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		607FACD71AFB9204008FA782 /* WCSessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -47,6 +51,10 @@
 		AF6FEF50E52A07BBD8821D45 /* Pods-WalletConnect_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnect_Tests.debug.xcconfig"; path = "Target Support Files/Pods-WalletConnect_Tests/Pods-WalletConnect_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB3C46552257496400966B16 /* WCEncryptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCEncryptorTests.swift; sourceTree = "<group>"; };
 		BB3C46562257496400966B16 /* WCSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
+		BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionManagerTests.swift; sourceTree = "<group>"; };
+		BBC3209522D6D994000D5A77 /* test_data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test_data; sourceTree = "<group>"; };
+		BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPeerMetaMock.swift; sourceTree = "<group>"; };
+		BBC3209922D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEthereumSignPayloadTests.swift; sourceTree = "<group>"; };
 		BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCBinanceTradePairTests.swift; sourceTree = "<group>"; };
 		C5AB14183732ECC55F0DC926 /* Pods-WalletConnect_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnect_Example.release.xcconfig"; path = "Target Support Files/Pods-WalletConnect_Example/Pods-WalletConnect_Example.release.xcconfig"; sourceTree = "<group>"; };
 		E343012D932C98B685E7EFB2 /* Pods_WalletConnect_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalletConnect_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				607FACD71AFB9204008FA782 /* WCSessionViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -130,9 +138,13 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				BBC3209522D6D994000D5A77 /* test_data */,
 				BBFB765722681B18008CBC32 /* WCBinanceTradePairTests.swift */,
 				BB3C46552257496400966B16 /* WCEncryptorTests.swift */,
 				BB3C46562257496400966B16 /* WCSessionTests.swift */,
+				BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */,
+				BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */,
+				BBC3209922D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -219,8 +231,14 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = FH9QG7ZJR9;
 						LastSwiftMigration = 1020;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -264,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC3209622D6D994000D5A77 /* test_data in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				607FACD81AFB9204008FA782 /* WCSessionViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +397,9 @@
 			files = (
 				BB3C46582257496400966B16 /* WCSessionTests.swift in Sources */,
 				BBFB765822681B18008CBC32 /* WCBinanceTradePairTests.swift in Sources */,
+				BBC3209822D6DDC1000D5A77 /* WCPeerMetaMock.swift in Sources */,
+				BBC3209222D6D6AC000D5A77 /* WCSessionManagerTests.swift in Sources */,
+				BBC3209A22D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift in Sources */,
 				BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,13 +545,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
 				INFOPLIST_FILE = WalletConnect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.walletconnect.WalletConnect-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -542,13 +564,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = FH9QG7ZJR9;
 				INFOPLIST_FILE = WalletConnect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.walletconnect.WalletConnect-Example";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

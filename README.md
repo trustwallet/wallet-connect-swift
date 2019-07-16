@@ -22,10 +22,10 @@ Demo video
 - [x] Approve and reject `eth_sign` / `personal_sign` / `eth_signTypedData`
 - [x] Approve and reject `eth_signTransaction` / `eth_sendTransaction`
 - [x] Approve and reject `bnb_sign` (binance dex orders)
+- [x] session persistent / recovery
 
 Todo:
 
-- [ ] session persistent / recovery
 - [ ] push notification (APNS)
 
 ## Example

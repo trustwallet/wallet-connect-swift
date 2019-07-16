@@ -7,7 +7,7 @@
 import Foundation
 import CryptoSwift
 
-public struct WCSession {
+public struct WCSession: Codable, Equatable {
     public let topic: String
     public let version: String
     public let bridge: URL

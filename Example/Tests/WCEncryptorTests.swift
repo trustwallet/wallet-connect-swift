@@ -16,11 +16,14 @@ class WCEncryptorTests: XCTestCase {
         let key = Data(hex: "5caa3a74154cee16bd1b570a1330be46e086474ac2f4720530662ef1a469662c")
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
+        let request = try JSONDecoder().decode(JSONRPCRequest<[WCSessionUpdateParam]>.self, from: decrypted)
 
         let expect =  """
 {"id":1554098597199736,"jsonrpc":"2.0","method":"wc_sessionUpdate","params":[{"approved":false,"chainId":null,"accounts":null}]}
 """
         XCTAssertEqual(expect, String(data: decrypted, encoding: .utf8)!)
+        XCTAssertEqual(request.method, "wc_sessionUpdate")
+        XCTAssertEqual(request.params[0].approved, false)
     }
 
     func testDecryptRejectSession() throws {
@@ -31,15 +34,18 @@ class WCEncryptorTests: XCTestCase {
         let key = Data(hex: "bbc82a01ebdb14698faee4a9e5038de72c995a9f6bcdb21903d62408b0c5ca96")
         let payload = WCEncryptionPayload(data: data, hmac: hmac, iv: iv)
         let decrypted = try WCEncryptor.decrypt(payload: payload, with: key)
+        let rpcError = try JSONDecoder().decode(JSONRPCErrorResponse.self, from: decrypted)
 
         let expect = """
 {"jsonrpc":"2.0","id":1554343834752446,"error":{"code":-32000,"message":"Session Rejected"}}
 """
         XCTAssertEqual(expect, String(data: decrypted, encoding: .utf8)!)
+        XCTAssertEqual(rpcError.error.code, -32000)
     }
 
     func testDecryptBnbSign() throws {
-        // wc:e7f48633-b2d5-43de-ab0a-f83a451a079c@1?bridge=https%3A%2F%2Fwallet-bridge.fdgahl.cn&key=10b653558be908057c2584b93d27cb0a6d020aa4520af9fef036dd0fec324668
+        // topic: e7f48633-b2d5-43de-ab0a-f83a451a079c
+        // key: 10b653558be908057c2584b93d27cb0a6d020aa4520af9fef036dd0fec324668
         let data = "9e3a3590371e27596745ac4665d4e50d148804413b7fc1ea2b7f4866562ce7c61d5cd21e7c442edd41f20de891a87988c89e28458cba5051aabd74cab0e700fffcd9a383e05292c2053eb256a4e98c435b72359e189f6a9374489a6e6aef6d8356d183cf358c81ce532a21dd27f594981ab0e1f1d8fb0545a4dc6fa626bc891590d4d673e7d876b7684913c9134fb52870c4beb057a55deb7c8e7b3d237ff4b41287744d8f41fa74ee253d0d1a7833965191172ae2cc814dda53e599eb4dbb41c1c60416c2385af38f0093a9dec97e4892a9f7793d24b43d087fa1ee549bc7037269cb19f68e32dae38ac695197c389c04fa043273f29abe0d0aee6933f237488361e0a4415e2e41541dd068304bd6051e099d3fbc909d9c237694c858080e461ceceabb3cb06048b5ac9b2944a28b7a516308f2e1ff9089bbcd3ead12066edcabc8fb8b28e40fa6ffb7943bfbb9fa8695324104798489724e1328d3000cb7bb0518f64117c5b871b282ac6bb3d1e213f4e82137402e6fd69478b145a5b5f059"
         let hmac = "d910de5672d1506129ad35709fa0d7c4618814605e8529385b089f899a99b574"
         let iv = "7cfdc41e3b2bee432a196770bb644865"
