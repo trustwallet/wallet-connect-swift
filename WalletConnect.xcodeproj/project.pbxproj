@@ -71,6 +71,7 @@
 		BB476790236BCCC300A9A9AF /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		BB476791236BCCC300A9A9AF /* CryptoSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoSwift.framework; path = Carthage/Build/iOS/CryptoSwift.framework; sourceTree = "<group>"; };
 		BB476799236BD18100A9A9AF /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		BB4767E9236BFDF800A9A9AF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +91,7 @@
 		BB476740236BB93600A9A9AF = {
 			isa = PBXGroup;
 			children = (
+				BB4767E9236BFDF800A9A9AF /* README.md */,
 				BB476799236BD18100A9A9AF /* Package.swift */,
 				BB47674C236BB93600A9A9AF /* WalletConnect */,
 				BB47674B236BB93600A9A9AF /* Products */,
