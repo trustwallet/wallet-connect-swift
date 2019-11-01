@@ -54,7 +54,7 @@ class WCSessionViewController: UIViewController {
 
     func connect(session: WCSession) {
         print("==> session", session)
-        let interactor = WCInteractor(session: session, meta: clientMeta)
+        let interactor = WCInteractor(session: session, meta: clientMeta, uuid: UIDevice.current.identifierForVendor ?? UUID())
 
         configure(interactor: interactor)
 

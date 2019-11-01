@@ -4,7 +4,7 @@
 // terms governing use, modification, and redistribution, is contained in the
 // file LICENSE at the root of the source code distribution tree.
 
-import UIKit
+import Foundation
 import Starscream
 import PromiseKit
 
@@ -50,9 +50,9 @@ open class WCInteractor {
     private var peerId: String?
     private var peerMeta: WCPeerMeta?
 
-    public init(session: WCSession, meta: WCPeerMeta, sessionRequestTimeout: TimeInterval = 20) {
+    public init(session: WCSession, meta: WCPeerMeta, uuid: UUID, sessionRequestTimeout: TimeInterval = 20) {
         self.session = session
-        self.clientId = (UIDevice.current.identifierForVendor ?? UUID()).description.lowercased()
+        self.clientId = uuid.description.lowercased()
         self.clientMeta = meta
         self.sessionRequestTimeout = sessionRequestTimeout
         self.state = .disconnected
@@ -135,7 +135,6 @@ open class WCInteractor {
     open func killSession() -> Promise<Void> {
         let result = WCSessionUpdateParam(approved: false, chainId: nil, accounts: nil)
         let response = JSONRPCRequest(id: generateId(), method: WCEvent.sessionUpdate.rawValue, params: [result])
-        let topic = session.topic
         return encryptAndSend(data: response.encoded)
             .map { [weak self] in
                 self?.disconnect()

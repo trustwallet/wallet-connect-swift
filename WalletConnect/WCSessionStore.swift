@@ -56,7 +56,6 @@ public struct WCSessionStore {
     }
 
     private static func store(_ sessions: [String: WCSessionStoreItem]) {
-        let data = try? JSONEncoder().encode(sessions)
         UserDefaults.standard.setCodable(sessions, forKey: prefix)
     }
 }
