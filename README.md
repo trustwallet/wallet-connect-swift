@@ -34,11 +34,31 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-WalletConnect is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+WalletConnect is available through [CocoaPods](https://cocoapods.org), [Carthage](https://github.com/Carthage/Carthage) and [Swift Package Manager](https://swift.org/package-manager/).
+
+### CocoaPods
+
+To install it, simply add the following line to your `Podfile`:
 
 ```ruby
-pod 'WalletConnect', git: 'https://github.com/TrustWallet/wallet-connect-swift', branch: 'master'
+pod 'WalletConnect', git: 'https://github.com/trustwallet/wallet-connect-swift', branch: 'master'
+```
+
+### Carthage
+
+Add following line to your `Cartfile`:
+
+```ruby
+github "trustwallet/wallet-connect-swift"
+```
+### Swift Package Manager
+
+Add `.package(url:_:)` to your `Package.swift`:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/trustwallet/wallet-connect-swift", .branch("master")),
+],
 ```
 
 ## Usage
