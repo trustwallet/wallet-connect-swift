@@ -11,6 +11,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '11.0'
   s.source_files = 'WalletConnect/**/*'
+  s.exclude_files = ["WalletConnect/Info.plist"]
   s.swift_version = '5.0'
 
   s.dependency 'CryptoSwift'
