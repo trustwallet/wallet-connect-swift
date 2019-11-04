@@ -15,10 +15,16 @@ public struct WCEthereumInteractor {
 
     func handleEvent(_ event: WCEvent, topic: String, decrypted: Data) throws {
         switch event {
-        case .ethSign, .ethPersonalSign, .ethSignTypeData:
+        case .ethSign, .ethPersonalSign:
             let request: JSONRPCRequest<[String]> = try event.decode(decrypted)
             let payload = try JSONDecoder().decode(WCEthereumSignPayload.self, from: decrypted)
             onSign?(request.id, payload)
+        case .ethSignTypeData:
+             let payload = try JSONDecoder().decode(WCEthereumSignPayload.self, from: decrypted)
+             guard case .signTypeData(let id, _, _) = payload else {
+                return
+             }
+             onSign?(id, payload)
         case .ethSendTransaction, .ethSignTransaction:
             let request: JSONRPCRequest<[WCEthereumTransaction]> = try event.decode(decrypted)
             guard !request.params.isEmpty else { throw WCError.badJSONRPCRequest }

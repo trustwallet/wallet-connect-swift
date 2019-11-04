@@ -9,7 +9,7 @@ import Foundation
 public enum WCEthereumSignPayload {
     case sign(data: Data, raw: [String])
     case personalSign(data: Data, raw: [String])
-    case signTypeData(data: Data, raw: [String])
+    case signTypeData(id: Int64, data: Data, raw: [String])
 }
 
 extension WCEthereumSignPayload: Decodable {
@@ -20,6 +20,7 @@ extension WCEthereumSignPayload: Decodable {
     }
 
     private enum CodingKeys: String, CodingKey {
+        case id
         case method
         case params
     }
@@ -36,14 +37,15 @@ extension WCEthereumSignPayload: Decodable {
         case .personal_sign:
             self = .personalSign(data: Data(hex: strings[0]), raw: strings)
         case .eth_signTypedData:
+            let id = try container.decode(Int64.self, forKey: .id)
             let address = params[0].value as? String ?? ""
             if let string = params[1].value as? String,
                 let data = string.data(using: .utf8) {
-                self = .signTypeData(data: data, raw: [address, string])
+                self = .signTypeData(id: id, data: data, raw: [address, string])
             } else if let dict = params[1].value as? [String: Any] {
                 let data = try JSONSerialization.data(withJSONObject: dict, options: [])
                 let json = String(data: data, encoding: .utf8) ?? ""
-                self = .signTypeData(data: data, raw: [address, json])
+                self = .signTypeData(id: id, data: data, raw: [address, json])
             } else {
                 throw WCError.badJSONRPCRequest
             }
@@ -64,7 +66,7 @@ extension WCEthereumSignPayload: Decodable {
             return raw[1]
         case .personalSign(let data, let raw):
             return String(data: data, encoding: .utf8) ?? raw[0]
-        case .signTypeData(_, let raw):
+        case .signTypeData(_, _, let raw):
             return raw[1]
         }
     }
