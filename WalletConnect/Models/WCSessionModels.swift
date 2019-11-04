@@ -9,7 +9,7 @@ import Foundation
 public struct WCSessionRequestParam: Codable {
     public let peerId: String
     public let peerMeta: WCPeerMeta
-    public let chainId: String?
+    public let chainId: Int?
 }
 
 public struct WCSessionUpdateParam: Codable {
