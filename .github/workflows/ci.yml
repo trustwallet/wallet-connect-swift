@@ -1,4 +1,4 @@
-name: Swift
+name: CI
 
 on:
   push:
@@ -7,10 +7,8 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  xcodebuild-test:
     runs-on: macos-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Pod install
@@ -20,4 +18,3 @@ jobs:
       run: |
         xcrun xcodebuild test -workspace WalletConnect.xcworkspace -scheme WalletConnect-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11' | xcpretty
       working-directory: Example
-
