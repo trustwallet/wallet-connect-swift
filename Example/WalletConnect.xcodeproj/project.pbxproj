@@ -16,6 +16,7 @@
 		95B629BC9AE35AF7FECB685A /* Pods_WalletConnect_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58018BFAC1E050DECC1E3B9B /* Pods_WalletConnect_Example.framework */; };
 		BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46552257496400966B16 /* WCEncryptorTests.swift */; };
 		BB3C46582257496400966B16 /* WCSessionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3C46562257496400966B16 /* WCSessionTests.swift */; };
+		BB7DE7812448013D00C4F207 /* WCEthereumTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7DE7802448013D00C4F207 /* WCEthereumTransactionTests.swift */; };
 		BBC3209222D6D6AC000D5A77 /* WCSessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */; };
 		BBC3209622D6D994000D5A77 /* test_data in Resources */ = {isa = PBXBuildFile; fileRef = BBC3209522D6D994000D5A77 /* test_data */; };
 		BBC3209822D6DDC1000D5A77 /* WCPeerMetaMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */; };
@@ -51,6 +52,7 @@
 		AF6FEF50E52A07BBD8821D45 /* Pods-WalletConnect_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalletConnect_Tests.debug.xcconfig"; path = "Target Support Files/Pods-WalletConnect_Tests/Pods-WalletConnect_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		BB3C46552257496400966B16 /* WCEncryptorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCEncryptorTests.swift; sourceTree = "<group>"; };
 		BB3C46562257496400966B16 /* WCSessionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WCSessionTests.swift; sourceTree = "<group>"; };
+		BB7DE7802448013D00C4F207 /* WCEthereumTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCEthereumTransactionTests.swift; sourceTree = "<group>"; };
 		BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCSessionManagerTests.swift; sourceTree = "<group>"; };
 		BBC3209522D6D994000D5A77 /* test_data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = test_data; sourceTree = "<group>"; };
 		BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WCPeerMetaMock.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				BBC3209122D6D6AC000D5A77 /* WCSessionManagerTests.swift */,
 				BBC3209722D6DDC1000D5A77 /* WCPeerMetaMock.swift */,
 				BBC3209922D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift */,
+				BB7DE7802448013D00C4F207 /* WCEthereumTransactionTests.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -400,6 +403,7 @@
 				BBC3209822D6DDC1000D5A77 /* WCPeerMetaMock.swift in Sources */,
 				BBC3209222D6D6AC000D5A77 /* WCSessionManagerTests.swift in Sources */,
 				BBC3209A22D6F9DE000D5A77 /* WCEthereumSignPayloadTests.swift in Sources */,
+				BB7DE7812448013D00C4F207 /* WCEthereumTransactionTests.swift in Sources */,
 				BB3C46572257496400966B16 /* WCEncryptorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
