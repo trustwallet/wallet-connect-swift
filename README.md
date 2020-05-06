@@ -1,7 +1,7 @@
 # WalletConnect
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/44d202d68ed244878f955c03ad710f50)](https://www.codacy.com/app/TrustWallet/wallet-connect-swift?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=TrustWallet/wallet-connect-swift&amp;utm_campaign=Badge_Grade)
-[![Build status](https://dev.azure.com/TrustWallet/Wallet%20Connect%20Swift/_apis/build/status/Wallet%20Connect%20Swift%20CI)](https://dev.azure.com/TrustWallet/Wallet%20Connect%20Swift/_build/latest?definitionId=32)
+![CI](https://github.com/trustwallet/wallet-connect-swift/workflows/CI/badge.svg)
 
 [WalletConnect](https://walletconnect.org/) Swift SDK, implements 1.0.0 websocket based protocol.
 
