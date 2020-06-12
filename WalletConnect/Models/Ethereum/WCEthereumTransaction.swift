@@ -11,7 +11,8 @@ public struct WCEthereumTransaction: Codable {
     public let to: String?
     public let nonce: String?
     public let gasPrice: String?
-    public let gasLimit: String?
+    public let gas: String?
+    public let gasLimit: String? // legacy gas limit
     public let value: String?
     public let data: String
 }

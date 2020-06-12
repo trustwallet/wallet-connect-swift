@@ -18,4 +18,20 @@ class WCEthereumTransactionTests: XCTestCase {
         XCTAssertEqual(tx.gasPrice, "0x10642ace9")
         XCTAssertEqual(tx.data.count, 458)
     }
+
+    func testDecodeGas() throws {
+        let jsonString = """
+        {
+            "from": "0xc36edf48e21cf395b206352a1819de658fd7f988",
+            "gas": "0x77fb",
+            "gasPrice": "0xb2d05e00",
+            "nonce": "0x64",
+            "to": "0x00000000000c2e074ec69a0dfb2997ba6c7d2e1e",
+            "value": "0x0",
+            "data": ""
+        }
+        """
+        let tx = try JSONDecoder().decode(WCEthereumTransaction.self, from: jsonString.data(using: .utf8)!)
+        XCTAssertEqual(tx.gas, "0x77fb")
+    }
 }
