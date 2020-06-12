@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  xcodebuild-test:
+  test:
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v2
@@ -16,5 +16,5 @@ jobs:
       working-directory: Example
     - name: Run tests
       run: |
-        xcrun xcodebuild test -workspace WalletConnect.xcworkspace -scheme WalletConnect-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 11' | xcpretty
+        fastlane scan
       working-directory: Example
