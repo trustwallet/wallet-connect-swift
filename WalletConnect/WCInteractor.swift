@@ -31,6 +31,7 @@ open class WCInteractor {
     public var eth: WCEthereumInteractor
     public var bnb: WCBinanceInteractor
     public var trust: WCTrustInteractor
+    public var okt: WCOKExChainInteractor
 
     // incoming event handlers
     public var onSessionRequest: SessionRequestClosure?
@@ -64,6 +65,7 @@ open class WCInteractor {
         self.eth = WCEthereumInteractor()
         self.bnb = WCBinanceInteractor()
         self.trust = WCTrustInteractor()
+        self.okt = WCOKExChainInteractor()
 
         socket.onConnect = { [weak self] in self?.onConnect() }
         socket.onDisconnect = { [weak self] error in self?.onDisconnect(error: error) }
@@ -211,6 +213,8 @@ extension WCInteractor {
                 try bnb.handleEvent(event, topic: topic, decrypted: decrypted)
             } else if WCEvent.trust.contains(event) {
                 try trust.handleEvent(event, topic: topic, decrypted: decrypted)
+            }else if WCEvent.okt.contains(event) {
+                try okt.handleEvent(event, topic: topic, decrypted: decrypted)
             }
         }
     }
