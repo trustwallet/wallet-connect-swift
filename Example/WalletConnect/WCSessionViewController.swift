@@ -141,7 +141,8 @@ class WCSessionViewController: UIViewController {
         let data: Data = {
             switch payload {
             case .sign(let data, _):
-                return data
+                let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
+                return prefix + data
             case .personalSign(let data, _):
                 let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
                 return prefix + data
