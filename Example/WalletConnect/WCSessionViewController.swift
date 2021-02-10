@@ -143,7 +143,7 @@ class WCSessionViewController: UIViewController {
             case .sign(let data, _):
                 return data
             case .personalSign(let data, _):
-                let prefix = "\u{19}Ethereum Signed Message:\n\(data)".data(using: .utf8)!
+                let prefix = "\u{19}Ethereum Signed Message:\n\(data.count)".data(using: .utf8)!
                 return prefix + data
             case .signTypeData(_, let data, _):
                 // FIXME
