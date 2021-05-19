@@ -34,8 +34,8 @@ class WCSessionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let string = "wc:fcfecccf-4930-46b9-9f42-5648579c1658@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=4941e24abe9cce7822c17ebeadcd2f25a96b6e6904b9e4ec0942446ad5de8a18"
-
+//        let string = "wc:fcfecccf-4930-46b9-9f42-5648579c1658@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=4941e24abe9cce7822c17ebeadcd2f25a96b6e6904b9e4ec0942446ad5de8a18"
+        let string = "wc:6087eb23-a8ac-4270-9f48-99cf86e56dd0@1?bridge=https%3A%2F%2Fbridge.walletconnect.org&key=228a5cfa700aa907a32c97568163d7a95d911fc56fe2ffcbe93b4199a2bcbc3a"
         defaultAddress = CoinType.ethereum.deriveAddress(privateKey: privateKey)
         uriField.text = string
         addressField.text = defaultAddress
@@ -124,6 +124,19 @@ class WCSessionViewController: UIViewController {
             }))
             alert.addAction(UIAlertAction(title: "Sign", style: .default, handler: { [weak self] _ in
                 self?.signBnbOrder(id: id, order: order)
+            }))
+            self?.show(alert, sender: nil)
+        }
+
+        interactor.okt.onTransaction = { [weak self] (id, event, transaction) in
+            let data = try! JSONEncoder().encode(transaction)
+            let message = String(data: data, encoding: .utf8)
+            let alert = UIAlertController(title: event.rawValue, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Reject", style: .destructive, handler: { _ in
+                self?.interactor?.rejectRequest(id: id, message: "I don't have okt").cauterize()
+            }))
+            alert.addAction(UIAlertAction(title: "Approve", style: .default, handler: { (_) in
+                self?.interactor?.approveRequest(id: id, result: "This is the signed data").cauterize()
             }))
             self?.show(alert, sender: nil)
         }
